@@ -13,11 +13,12 @@
 
 //= require rails-ujs
 //= require jquery3
+//= require jquery.easing
 //= require popper
 //= require bootstrap-sprockets
 //= require activestorage
 //= require turbolinks
 //= require_tree .
 
-//= require js/sb-admin-2.js
+//= require js/sb-admin-2.min
 
