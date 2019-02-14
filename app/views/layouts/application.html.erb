@@ -9,7 +9,22 @@
     <%= javascript_include_tag 'application' %>
   </head>
 
-  <body>
-    <%= yield %>
+  <body id="page-top">
+    <div id="wrapper">
+      <%= render partial: 'layouts/shared/sidebar' %>
+      <!-- Content Wrapper -->
+      <div id="content-wrapper" class="d-flex flex-column">
+        <!-- Main Content -->
+        <div id="content">
+          <%= render partial: 'layouts/shared/topbar' %>
+          <%= yield %>
+        </div>
+        <!-- End of Main Content -->
+        <%= render partial: 'layouts/shared/footer' %>
+      </div>
+    </div>
+    <!-- End of Content Wrapper -->
+    <%= render partial: 'layouts/shared/scroll' %>
+    <%= render partial: 'layouts/shared/logout-modal' %>
   </body>
 </html>
