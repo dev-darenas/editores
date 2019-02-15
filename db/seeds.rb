@@ -5,3 +5,13 @@
 #
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
+
+# ======================================= ROLES =======================================
+roles = [:admin, :seller, :collector]
+
+Role.delete_all
+ActiveRecord::Base.connection.execute("TRUNCATE roles")
+p "################# creating roles #################"
+roles.each_with_index do |name, index|
+  Role.create(id: (index+1), name: name)
+end
