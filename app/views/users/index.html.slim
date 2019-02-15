@@ -1,21 +1,53 @@
-h1 Listing users
-
-table
-  thead
-    tr
-      th Email
-      th Creation Date
-      th 
-
-  tbody
-    - @users.each do |user|
-      tr
-        td = user.email
-        td = user.created_at
-        td = link_to 'Show', user
-        td = link_to 'Edit', edit_user_path(user)
-        td = link_to 'Destroy', user, data: { confirm: 'Are you sure?' }, method: :delete
-
-br
-
-= link_to 'New User', new_user_path
+.container-fluid
+  h1.h3.mb-2.text-gray-800
+    | Usuarios
+  .card.shadow.mb-4
+    .card-header.py-3
+      h6.m-0.font-weight-bold.text-primary
+        | Listado de usuarios
+      .text-right
+        a.btn.btn-primary.btn-icon-split[href=new_user_path]
+          span.text
+            | Crear Usuario
+          span.icon.text-white-50
+            i.fa.fa-plus
+    .card-body
+      .table-responsive
+        table#dataTable.table.table-bordered[width="100%" cellspacing="0"]
+          thead
+            tr
+              th
+                | Nombre
+              th
+                | Apellido
+              th
+                | Correo
+              th
+                | Teléfono
+              th
+                | Rol
+              th
+                | Fecha Creación
+              th.text-center[colspan="3"]
+                | Acciones
+          tbody
+            - @users.each do |user|
+              tr
+                td
+                  = user.firstname
+                td
+                  = user.lastname
+                td
+                  = user.email
+                td
+                  = user.cellphone
+                td
+                  = user.roles.first.name.humanize
+                td
+                  = user.created_at.strftime("%F")
+                td
+                  = link_to 'Ver', user
+                td
+                  = link_to 'Editar', edit_user_path(user)
+                td
+                  = link_to 'Eliminar', user, data: { confirm: 'Esta seguro de eliminar este usuario?' }, method: :delete

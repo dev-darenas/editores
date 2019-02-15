@@ -1,4 +1,6 @@
 = form_for @user do |f|
+  .form-group
+    = f.email_field :email, autofocus: true, autocomplete: "email", class: "form-control form-control-user", id: "exampleInputEmail", placeholder: "Correo Electrónico"
   - if @user.errors.any?
     #error_explanation
       h2 = "#{pluralize(@user.errors.count, "error")} prohibited this user from being saved:"
