@@ -1,0 +1,28 @@
+.row
+  .col-lg-6.d-none.d-lg-block.bg-login-image
+  .col-lg-6
+    .p-5
+      .text-center
+        h1.h4.text-gray-900.mb-4
+          | Bienvenido
+      = form_for(resource, as: resource_name, url: session_path(resource_name), html: {class: 'user' } ) do |f|
+        .form-group
+          = f.email_field :email, autofocus: true, autocomplete: "email", class: "form-control form-control-user", id: "exampleInputEmail", placeholder: "Correo Electrónico"
+        .form-group
+          = f.password_field :password, autocomplete: "current-password", class: "form-control form-control-user", id: "exampleInputPassword", placeholder: "Contraseña"
+        - if devise_mapping.rememberable?
+          .form-group
+            .custom-control.custom-checkbox.small
+              = f.check_box :remember_me, class: "custom-control-input", id: "customCheck"
+              = f.label "Recuerdame", class: "custom-control-label"
+        .actions
+          = f.submit "Ingresar", class: "btn btn-primary btn-user btn-block"
+      hr
+      .text-center
+        - if devise_mapping.recoverable? && controller_name != 'passwords' && controller_name != 'registrations'
+          = link_to "Olvidé mi contraseña", new_password_path(resource_name), class: "small"
+          br
+      .text-center
+        - if devise_mapping.registerable? && controller_name != 'registrations'
+          = link_to "Crear Cuenta", new_registration_path(resource_name), class: "small"
+          br
