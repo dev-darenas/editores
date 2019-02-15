@@ -16,6 +16,10 @@ module Editorial
       end if File.exists?(env_file)
     end
 
+    config.generators do |g|
+      g.template_engine = :slim
+    end
+
     # Initialize configuration defaults for originally generated Rails version.
     config.load_defaults 5.2
 
