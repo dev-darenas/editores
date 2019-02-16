@@ -1,0 +1,29 @@
+ul#accordionSidebar.navbar-nav.bg-gradient-primary.sidebar.sidebar-dark.accordion
+  a.sidebar-brand.d-flex.align-items-center.justify-content-center[href="/"]
+    .sidebar-brand-icon.rotate-n-15
+      i.fa.fa-book
+    .sidebar-brand-text.mx-3
+      | Editorial
+  hr.sidebar-divider.my-0
+  li.nav-item
+    a.nav-link[href=root_path]
+      i.fa.fa-fw.fa-tachometer
+      span
+        | Dashboard
+  hr.sidebar-divider
+  .sidebar-heading
+    |  Admin 
+  li.nav-item
+    a.nav-link.collapsed[href="#" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="true" aria-controls="collapseTwo"]
+      i.fa.fa-fw.fa-users
+      span
+        | Usuarios
+    #collapseTwo.collapse[aria-labelledby="headingTwo" data-parent="#accordionSidebar"]
+      .bg-white.py-2.collapse-inner.rounded
+        a.collapse-item[href=users_path]
+          | Listar
+        a.collapse-item[href=new_user_path]
+          | Crear
+  hr.sidebar-divider.d-none.d-md-block
+  .text-center.d-none.d-md-inline
+    button#sidebarToggle.rounded-circle.border-0
