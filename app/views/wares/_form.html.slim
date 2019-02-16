@@ -1,0 +1,21 @@
+= form_for @ware do |f|
+  - if @ware.errors.any?
+    #error_explanation
+      h2 = "#{pluralize(@ware.errors.count, "error")} prohibited this ware from being saved:"
+      ul
+        - @ware.errors.full_messages.each do |message|
+          li = message
+
+  .field
+    = f.label :reference
+    = f.text_field :reference
+  .field
+    = f.label :name
+    = f.text_field :name
+  .field
+    = f.label :price
+    = f.text_field :price
+  .field
+    = f.label :quantity
+    = f.number_field :quantity
+  .actions = f.submit

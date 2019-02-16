@@ -9,9 +9,9 @@
         = render "devise/shared/error_messages", resource: resource
         .form-group.row
           .col-sm-6.mb-3.mb-sm-0
-            input#exampleFirstName.form-control.form-control-user[type="text" placeholder="First Name"]
+            input#exampleFirstName.form-control.form-control-user[type="text" placeholder="Nombres"]
           .col-sm-6
-            input#exampleLastName.form-control.form-control-user[type="text" placeholder="Last Name"]
+            input#exampleLastName.form-control.form-control-user[type="text" placeholder="Apellidos"]
         .form-group
           = f.email_field :email, autofocus: true, autocomplete: "email", class: "form-control form-control-user", id: "exampleInputEmail", placeholder: "Correo Electrónico"
         .form-group.row

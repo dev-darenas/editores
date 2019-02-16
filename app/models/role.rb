@@ -12,4 +12,17 @@ validates :resource_type,
           :allow_nil => true
 
 scopify
+
+
+  def role_name
+    case name.to_sym
+    when :admin
+      "Administrador"
+    when :seller
+      "Vendedor"
+    when :collector
+      "Cobrador"
+    end
+  end
+
 end
