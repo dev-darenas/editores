@@ -1,8 +1,10 @@
-h1 Editing user
-
-== render 'form'
-
-=> link_to 'Show', @user
-'|
-=< link_to 'Back', users_path
-
+.container-fluid
+  h1.h3.mb-2.text-gray-800
+    | Editar Usuario
+  .card.shadow.mb-4
+    .card-header.py-3
+      h6.m-0.font-weight-bold.text-primary
+        | Formulario Usuario
+    .card-body
+      == render 'form'
+    .card-footer.py-3
