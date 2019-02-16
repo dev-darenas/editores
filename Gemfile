@@ -44,6 +44,12 @@ gem 'bootstrap', '4.1.3'
 gem 'jquery-rails', '4.3.3'
 gem 'jquery-easing-rails', '0.0.2'
 
+
+#Api
+gem 'jwt', '~> 2.1.0'
+gem 'active_model_serializers', '~> 0.10.6'
+gem 'will_paginate', '~> 3.1.0'
+
 # Slim
 gem "slim-rails"
 
