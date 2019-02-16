@@ -1,0 +1,27 @@
+h1 Listing wares
+
+table
+  thead
+    tr
+      th Reference
+      th Name
+      th Price
+      th Quantity
+      th
+      th
+      th
+
+  tbody
+    - @wares.each do |ware|
+      tr
+        td = ware.reference
+        td = ware.name
+        td = ware.price
+        td = ware.quantity
+        td = link_to 'Show', ware
+        td = link_to 'Edit', edit_ware_path(ware)
+        td = link_to 'Destroy', ware, data: { confirm: 'Are you sure?' }, method: :delete
+
+br
+
+= link_to 'New Ware', new_ware_path

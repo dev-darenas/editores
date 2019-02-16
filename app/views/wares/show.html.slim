@@ -1,0 +1,18 @@
+p#notice = notice
+
+p
+  strong Reference:
+  = @ware.reference
+p
+  strong Name:
+  = @ware.name
+p
+  strong Price:
+  = @ware.price
+p
+  strong Quantity:
+  = @ware.quantity
+
+=> link_to 'Edit', edit_ware_path(@ware)
+'|
+=< link_to 'Back', wares_path
