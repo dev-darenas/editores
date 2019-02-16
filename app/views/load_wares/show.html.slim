@@ -1,0 +1,15 @@
+p#notice = notice
+
+p
+  strong User:
+  = @load_ware.user.firstname
+p
+  strong Ware:
+  = @load_ware.ware.name
+p
+  strong Quantity:
+  = @load_ware.quantity
+
+=> link_to 'Edit', edit_load_ware_path(@load_ware)
+'|
+=< link_to 'Back', load_wares_path

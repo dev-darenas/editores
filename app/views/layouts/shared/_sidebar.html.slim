@@ -20,9 +20,37 @@ ul#accordionSidebar.navbar-nav.bg-gradient-primary.sidebar.sidebar-dark.accordio
         | Usuarios
     #collapseTwo.collapse[aria-labelledby="headingTwo" data-parent="#accordionSidebar"]
       .bg-white.py-2.collapse-inner.rounded
+        h6.collapse-header
+          | Administrar usuarios
         a.collapse-item[href=users_path]
           | Listar
         a.collapse-item[href=new_user_path]
+          | Crear
+  li.nav-item
+    a.nav-link.collapsed[href="#" data-toggle="collapse" data-target="#collapseWares" aria-expanded="true" aria-controls="collapseWares"]
+      i.fa.fa-fw.fa-book
+      span
+        | Mercancia
+    #collapseWares.collapse[aria-labelledby="headingUtilities" data-parent="#accordionSidebar"]
+      .bg-white.py-2.collapse-inner.rounded
+        h6.collapse-header
+          | Administrar Mercancia:
+        a.collapse-item[href=wares_path]
+          | Listar
+        a.collapse-item[href=new_ware_path]
+          | Crear
+  li.nav-item
+    a.nav-link.collapsed[href="#" data-toggle="collapse" data-target="#collapseLoadWares" aria-expanded="true" aria-controls="collapseLoadWares"]
+      i.fa.fa-fw.fa-address-book
+      span
+        | Cargar Mercancia
+    #collapseLoadWares.collapse[aria-labelledby="headingUtilities" data-parent="#accordionSidebar"]
+      .bg-white.py-2.collapse-inner.rounded
+        h6.collapse-header
+          | Administrar Mercancia:
+        a.collapse-item[href=load_wares_path]
+          | Listar
+        a.collapse-item[href=new_load_ware_path]
           | Crear
   hr.sidebar-divider.d-none.d-md-block
   .text-center.d-none.d-md-inline
