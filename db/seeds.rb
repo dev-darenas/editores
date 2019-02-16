@@ -15,3 +15,19 @@ p "################# creating roles #################"
 roles.each_with_index do |name, index|
   Role.create(id: (index+1), name: name)
 end
+
+
+user = User.find_by(email: 'superadmin@editorial.com')
+
+unless user.present?
+  u = User.new(
+    firstname: 'User',
+    lastname: 'Admin',
+    cellphone: '123456789',
+    email: 'superadmin@editorial.com',
+    password: 'Editorial2019@superadmin',
+    password_confirmation: 'Editorial2019@superadmin'
+  )
+  u.add_role :admin
+  u.save!
+end
