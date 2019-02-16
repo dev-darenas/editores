@@ -1,0 +1,25 @@
+h1 Listing load_wares
+
+table
+  thead
+    tr
+      th User
+      th Ware
+      th Quantity
+      th
+      th
+      th
+
+  tbody
+    - @load_wares.each do |load_ware|
+      tr
+        td = load_ware.user.firstname
+        td = load_ware.ware.name
+        td = load_ware.quantity
+        td = link_to 'Show', load_ware
+        td = link_to 'Edit', edit_load_ware_path(load_ware)
+        td = link_to 'Destroy', load_ware, data: { confirm: 'Are you sure?' }, method: :delete
+
+br
+
+= link_to 'New Load ware', new_load_ware_path

@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
   
+  resources :load_wares
   devise_for :users
   root to: 'page#index'
 
