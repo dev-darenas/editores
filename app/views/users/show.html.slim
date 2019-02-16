@@ -1,9 +1,38 @@
-p#notice = notice
+.container-fluid
+  h1.h3.mb-2.text-gray-800
+    | Usuario
+  .card.shadow.mb-4
+    .card-header.py-3
+      h6.m-0.font-weight-bold.text-primary
+        .pull-left
+          | Detalles
+    .card-body
+      p#notice = notice
+      .row
+        .col-lg-6
+          .card.mb-1.py-1.border-left-primary
+            .card-body
+              strong Nombre:&nbsp
+              = @user.firstname
+          .card.mb-1.py-1.border-left-primary
+            .card-body
+              strong Correo:&nbsp
+              = @user.email
+        .col-lg-6
+          .card.mb-1.py-1.border-left-primary
+            .card-body
+              strong Apellido:&nbsp
+              = @user.lastname
+          .card.mb-1.py-1.border-left-primary
+            .card-body
+              strong Teléfono:&nbsp
+              = @user.cellphone
 
-h1 = @user.email
-h4 = @user.created_at
-
-
-=> link_to 'Edit', edit_user_path(@user)
-'|
-=< link_to 'Back', users_path
+      .pull-right.mt-5
+        a.btn.btn-primary.btn-icon-split.pull-left[href=edit_user_path(@user)]
+          span.text
+            | Editar
+      .pull-left.mt-5
+        a.btn.btn-primary.btn-icon-split.pull-left[href=users_path]
+          span.text
+            | Atrás

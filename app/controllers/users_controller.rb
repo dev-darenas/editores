@@ -42,8 +42,8 @@ class UsersController < ApplicationController
   # PATCH/PUT /users/1.json
   def update
     respond_to do |format|
-      @user.remove_role @user.roles.first.name
       if @user.update(user_params)
+        @user.remove_role @user.roles.first.name
         @user.add_role params[:user][:roles]
         format.html { redirect_to @user, notice: 'User was successfully updated.' }
         format.json { render :show, status: :ok, location: @user }

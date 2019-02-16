@@ -4,13 +4,14 @@
   .card.shadow.mb-4
     .card-header.py-3
       h6.m-0.font-weight-bold.text-primary
-        | Listado de usuarios
-      .text-right
-        a.btn.btn-primary.btn-icon-split[href=new_user_path]
-          span.text
-            | Crear Usuario
-          span.icon.text-white-50
-            i.fa.fa-plus
+        .pull-left
+          | Listado de usuarios
+        .pull-right
+          a.btn.btn-primary.btn-icon-split[href=new_user_path]
+            span.icon.text-white-50
+              i.fa.fa-plus
+            span.text
+              | Crear Usuario
     .card-body
       .table-responsive
         table#dataTable.table.table-bordered[width="100%" cellspacing="0"]
