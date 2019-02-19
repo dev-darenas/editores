@@ -1,5 +1,10 @@
-h1 New ware
-
-== render 'form'
-
-= link_to 'Back', wares_path
+.container-fluid
+  h1.h3.mb-2.text-gray-800
+    | Crear Mercancía
+  .card.shadow.mb-4
+    .card-header.py-3
+      h6.m-0.font-weight-bold.text-primary
+        | Formulario Mercancía
+    .card-body
+      == render 'form'
+    .card-footer.py-3

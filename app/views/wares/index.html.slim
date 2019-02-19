@@ -1,27 +1,46 @@
-h1 Listing wares
-
-table
-  thead
-    tr
-      th Reference
-      th Name
-      th Price
-      th Quantity
-      th
-      th
-      th
-
-  tbody
-    - @wares.each do |ware|
-      tr
-        td = ware.reference
-        td = ware.name
-        td = ware.price
-        td = ware.quantity
-        td = link_to 'Show', ware
-        td = link_to 'Edit', edit_ware_path(ware)
-        td = link_to 'Destroy', ware, data: { confirm: 'Are you sure?' }, method: :delete
-
-br
-
-= link_to 'New Ware', new_ware_path
+.container-fluid
+  h1.h3.mb-2.text-gray-800
+    | Mercancia
+  .card.shadow.mb-4
+    .card-header.py-3
+      h6.m-0.font-weight-bold.text-primary
+        .pull-left
+          | Listado de mercancía
+        .pull-right
+          a.btn.btn-primary.btn-icon-split[href=new_ware_path]
+            span.icon.text-white-50
+              i.fa.fa-plus
+            span.text
+              | Adiconar Mercancía
+    .card-body
+      .table-responsive
+        table#dataTable.table.table-bordered[width="100%" cellspacing="0"]
+          thead
+            tr
+              th
+                | Referencia
+              th
+                | Nombre
+              th
+                | Precio
+              th
+                | Cantidad
+              th.text-center[colspan="3"]
+                | Acciones
+          tbody
+            - @wares.each do |ware|
+              tr
+                td
+                  = ware.reference
+                td
+                  = ware.name
+                td
+                  = number_to_currency(ware.price)
+                td
+                  = ware.quantity
+                td
+                  = link_to 'Ver', ware
+                td
+                  = link_to 'Editar', edit_ware_path(ware)
+                td
+                  = link_to 'Eliminar', ware, data: { confirm: 'Seguro que desea eliminar esta mercancia?' }, method: :delete

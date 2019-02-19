@@ -1,18 +1,38 @@
-p#notice = notice
+.container-fluid
+  h1.h3.mb-2.text-gray-800
+    | Mercancía
+  .card.shadow.mb-4
+    .card-header.py-3
+      h6.m-0.font-weight-bold.text-primary
+        .pull-left
+          | Detalles
+    .card-body
+      p#notice = notice
+      .row
+        .col-lg-6
+          .card.mb-1.py-1.border-left-primary
+            .card-body
+              strong Referencia:&nbsp
+              = @ware.reference
+          .card.mb-1.py-1.border-left-primary
+            .card-body
+              strong Nombre:&nbsp
+              = @ware.name
+        .col-lg-6
+          .card.mb-1.py-1.border-left-primary
+            .card-body
+              strong Precio:&nbsp
+              = number_to_currency(@ware.price)
+          .card.mb-1.py-1.border-left-primary
+            .card-body
+              strong Cantidad:&nbsp
+              = @ware.quantity
 
-p
-  strong Reference:
-  = @ware.reference
-p
-  strong Name:
-  = @ware.name
-p
-  strong Price:
-  = @ware.price
-p
-  strong Quantity:
-  = @ware.quantity
-
-=> link_to 'Edit', edit_ware_path(@ware)
-'|
-=< link_to 'Back', wares_path
+      .pull-right.mt-5
+        a.btn.btn-primary.btn-icon-split.pull-left[href=edit_ware_path(@ware)]
+          span.text
+            | Editar
+      .pull-left.mt-5
+        a.btn.btn-primary.btn-icon-split.pull-left[href=wares_path]
+          span.text
+            | Atrás

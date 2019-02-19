@@ -1,18 +1,32 @@
-= form_for @load_ware do |f|
-  - if @load_ware.errors.any?
-    #error_explanation
-      h2 = "#{pluralize(@load_ware.errors.count, "error")} prohibited this load_ware from being saved:"
-      ul
-        - @load_ware.errors.full_messages.each do |message|
-          li = message
+.row
+  .col-lg-12
+    .p-2
+      .text-center
+        h1.h4.text-gray-900.mb-4
+          = form_for @load_ware do |f|
+            - if @load_ware.errors.any?
+              #error_explanation
+                h2 = "#{pluralize(@load_ware.errors.count, "error")} prohibited this load_ware from being saved:"
+                ul
+                  - @load_ware.errors.full_messages.each do |message|
+                    li = message
+              br
+            .form-group.row
+              .col-sm-6.mb-3.mb-sm-0
+                = f.collection_select :user_id, User.with_any_role(:collector, :seller), :id, :full_name, {} , {class: "form-control form-control-user"}
 
-  .field
-    = f.label :user_id
-    = f.text_field :user_id
-  .field
-    = f.label :ware_id
-    = f.text_field :ware_id
-  .field
-    = f.label :quantity
-    = f.number_field :quantity
-  .actions = f.submit
+              .col-sm-6
+                = f.collection_select :ware_id, Ware.all, :id, :name, {} , {class: "form-control form-control-user"}
+            .form-group.row
+              .col-sm-6.mb-3.mb-sm-0
+                = f.number_field :quantity, autofocus: false, class: "form-control form-control-user", placeholder: "Cantidad"
+              .col-sm-6
+
+
+            .pull-right.mt-5
+              = f.submit "Guardar", class: "btn btn-primary"
+            .pull-left.mt-5
+              a.btn.btn-primary.btn-icon-split.pull-left[href=load_wares_path]
+                span.text
+                  | Atrás
+
