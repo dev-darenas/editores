@@ -24,5 +24,5 @@
           br
       .text-center
         - if devise_mapping.registerable? && controller_name != 'registrations'
-          = link_to "Crear Cuenta", new_registration_path(resource_name), class: "small"
+          - #= link_to "Crear Cuenta", new_registration_path(resource_name), class: "small"
           br

@@ -30,6 +30,6 @@
           br
       .text-center
         - if controller_name != 'sessions'
-          = link_to "Ya tienes una cuenta?, Ingresa!", new_session_path(resource_name), class: "small"
+          - #= link_to "Ya tienes una cuenta?, Ingresa!", new_session_path(resource_name), class: "small"
           br
 - #= render "devise/shared/links"
