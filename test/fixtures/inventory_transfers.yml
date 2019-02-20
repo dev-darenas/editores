@@ -1,0 +1,17 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  sender: one
+  recipient: one
+  date: 2019-02-20
+  product: one
+  quantity: 1
+  observations: MyText
+
+two:
+  sender: two
+  recipient: two
+  date: 2019-02-20
+  product: two
+  quantity: 1
+  observations: MyText

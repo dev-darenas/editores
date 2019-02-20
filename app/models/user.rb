@@ -11,6 +11,15 @@ class User < ApplicationRecord
   validates :cellphone, presence: true
 
 
+  has_many      :sent, 
+                :class_name => "Ware",
+                :foreign_key  => "sent_id"
+
+  has_many      :received, 
+                :class_name => "Ware", 
+                :foreign_key  => "received_id"
+
+
   def full_name
     "#{firstname} #{lastname}"
   end

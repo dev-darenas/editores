@@ -26,13 +26,15 @@
 
             .form-group
               = f.email_field :email, autofocus: false, autocomplete: "email", class: "form-control form-control-user", id: "exampleInputEmail", placeholder: "Correo Electrónico"
-            .form-group.row
-              .col-sm-6.mb-3.mb-sm-0
-                - # if @minimum_password_length
-                - # end
-                = f.password_field :password, autocomplete: "new-password", class: "form-control form-control-user", id: "exampleInputPassword", placeholder: "Contraseña"
-              .col-sm-6
-                = f.password_field :password_confirmation, autocomplete: "new-password", class: "form-control form-control-user", id: "exampleRepeatPassword", placeholder: "Confirmar Contraseña"
+
+            - unless controller_name == "users" && action_name == "edit"
+              .form-group.row
+                .col-sm-6.mb-3.mb-sm-0
+                  - # if @minimum_password_length
+                  - # end
+                  = f.password_field :password, autocomplete: "new-password", class: "form-control form-control-user", id: "exampleInputPassword", placeholder: "Contraseña"
+                .col-sm-6
+                  = f.password_field :password_confirmation, autocomplete: "new-password", class: "form-control form-control-user", id: "exampleRepeatPassword", placeholder: "Confirmar Contraseña"
 
             .pull-right.mt-5
               = f.submit "Guardar", class: "btn btn-primary"

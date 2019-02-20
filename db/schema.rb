@@ -10,7 +10,21 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_02_16_180205) do
+ActiveRecord::Schema.define(version: 2019_02_20_213917) do
+
+  create_table "inventory_transfers", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+    t.bigint "sender_id"
+    t.bigint "recipient_id"
+    t.date "date"
+    t.bigint "ware_id"
+    t.integer "quantity"
+    t.text "observations"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["recipient_id"], name: "index_inventory_transfers_on_recipient_id"
+    t.index ["sender_id"], name: "index_inventory_transfers_on_sender_id"
+    t.index ["ware_id"], name: "index_inventory_transfers_on_ware_id"
+  end
 
   create_table "load_wares", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.bigint "user_id"
@@ -18,6 +32,7 @@ ActiveRecord::Schema.define(version: 2019_02_16_180205) do
     t.integer "quantity"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.text "observations"
     t.index ["user_id"], name: "index_load_wares_on_user_id"
     t.index ["ware_id"], name: "index_load_wares_on_ware_id"
   end
@@ -65,6 +80,9 @@ ActiveRecord::Schema.define(version: 2019_02_16_180205) do
     t.datetime "updated_at", null: false
   end
 
+  add_foreign_key "inventory_transfers", "users", column: "recipient_id"
+  add_foreign_key "inventory_transfers", "users", column: "sender_id"
+  add_foreign_key "inventory_transfers", "wares"
   add_foreign_key "load_wares", "users"
   add_foreign_key "load_wares", "wares"
 end

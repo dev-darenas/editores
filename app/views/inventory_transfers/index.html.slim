@@ -1,0 +1,50 @@
+.container-fluid
+  h1.h3.mb-2.text-gray-800
+    | Transferencias de Mercancia
+  .card.shadow.mb-4
+    .card-header.py-3
+      h6.m-0.font-weight-bold.text-primary
+        .pull-left
+          | Listado
+        .pull-right
+          a.btn.btn-primary.btn-icon-split[href=new_inventory_transfer_path]
+            span.icon.text-white-50
+              i.fa.fa-exchange
+            span.text
+              | Transferir Mercancía
+    .card-body
+      .table-responsive
+        table#dataTable.table.table-bordered[width="100%" cellspacing="0"]
+          thead
+            tr
+              th
+                | Entrega
+              th
+                | Recibe
+              th
+                | Mercancia
+              th
+                | Fecha Transferencia
+              th
+                | Cantidad
+              th.text-center[colspan="3"]
+                | Acciones
+          tbody
+            - @inventory_transfers.each do |inventory_transfer|
+              tr
+                td
+                  = inventory_transfer.sender.full_name
+                td
+                  = inventory_transfer.recipient.full_name
+                td
+                  = inventory_transfer.ware.name
+                td
+                  = inventory_transfer.date
+                td
+                  = inventory_transfer.quantity
+                td
+                  = link_to 'Ver', inventory_transfer
+                td
+                  = link_to 'Editar', edit_inventory_transfer_path(inventory_transfer)
+                td
+                  = link_to 'Eliminar', inventory_transfer, data: { confirm: 'Seguro de Eliminar ?' }, method: :delete

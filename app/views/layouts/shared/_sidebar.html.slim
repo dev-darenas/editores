@@ -52,6 +52,19 @@ ul#accordionSidebar.navbar-nav.bg-gradient-primary.sidebar.sidebar-dark.accordio
           | Listar
         a.collapse-item[href=new_load_ware_path]
           | Crear
+  li.nav-item
+    a.nav-link.collapsed[href="#" data-toggle="collapse" data-target="#collapseInventoryTransfers" aria-expanded="true" aria-controls="collapseInventoryTransfers"]
+      i.fa.fa-fw.fa-exchange
+      span
+        | Transferencia Mercancia
+    #collapseInventoryTransfers.collapse[aria-labelledby="headingUtilities" data-parent="#accordionSidebar"]
+      .bg-white.py-2.collapse-inner.rounded
+        h6.collapse-header
+          | Transferencias:
+        a.collapse-item[href=inventory_transfers_path]
+          | Listar
+        a.collapse-item[href=new_inventory_transfer_path]
+          | Crear
   hr.sidebar-divider.d-none.d-md-block
   .text-center.d-none.d-md-inline
     button#sidebarToggle.rounded-circle.border-0

@@ -69,6 +69,6 @@ class LoadWaresController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def load_ware_params
-      params.require(:load_ware).permit(:user_id, :ware_id, :quantity)
+      params.require(:load_ware).permit(:user_id, :ware_id, :quantity, :observations)
     end
 end

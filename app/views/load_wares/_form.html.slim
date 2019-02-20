@@ -13,14 +13,15 @@
               br
             .form-group.row
               .col-sm-6.mb-3.mb-sm-0
-                = f.collection_select :user_id, User.with_any_role(:collector, :seller), :id, :full_name, {} , {class: "form-control form-control-user"}
+                = f.collection_select :user_id, User.all, :id, :full_name, {} , {class: "form-control form-control-user"}
 
               .col-sm-6
                 = f.collection_select :ware_id, Ware.all, :id, :name, {} , {class: "form-control form-control-user"}
             .form-group.row
               .col-sm-6.mb-3.mb-sm-0
-                = f.number_field :quantity, autofocus: false, class: "form-control form-control-user", placeholder: "Cantidad"
-              .col-sm-6
+                = f.number_field :quantity, autofocus: false, class: "form-control form-control-user",placeholder: "Cantidad"
+              .col-sm-6.mb-3.mb-sm-0
+                = f.text_area :observations, autofocus: false, class: "form-control form-control-user", placeholder: "Observaciones"
 
 
             .pull-right.mt-5

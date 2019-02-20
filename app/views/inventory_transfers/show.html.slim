@@ -1,0 +1,47 @@
+.container-fluid
+  h1.h3.mb-2.text-gray-800
+    | Transferencia de Mercancia
+  .card.shadow.mb-4
+    .card-header.py-3
+      h6.m-0.font-weight-bold.text-primary
+        .pull-left
+          | Detalles
+    .card-body
+      p#notice = notice
+      .row
+        .col-lg-6
+          .card.mb-1.py-1.border-left-primary
+            .card-body
+              strong Entrega:&nbsp
+              = @inventory_transfer.sender.full_name
+          .card.mb-1.py-1.border-left-primary
+            .card-body
+              strong Mercancia:&nbsp
+              = @inventory_transfer.ware.name
+          .card.mb-1.py-1.border-left-primary
+            .card-body
+              strong Observaciones:&nbsp
+              = @inventory_transfer.observations
+        .col-lg-6
+          .card.mb-1.py-1.border-left-primary
+            .card-body
+              strong Recibe:&nbsp
+              = @inventory_transfer.recipient.full_name
+          .card.mb-1.py-1.border-left-primary
+            .card-body
+              strong Cantidad:&nbsp
+              = @inventory_transfer.quantity
+          .card.mb-1.py-1.border-left-primary
+            .card-body
+              strong Fecha de Transferencia:&nbsp
+              = @inventory_transfer.date.strftime("%F")
+
+      .pull-right.mt-5
+        a.btn.btn-primary.btn-icon-split.pull-left[href=edit_inventory_transfer_path(@inventory_transfer)]
+          span.text
+            | Editar
+      .pull-left.mt-5
+        a.btn.btn-primary.btn-icon-split.pull-left[href=inventory_transfers_path]
+          span.text
+            | Atrás
+
