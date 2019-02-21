@@ -10,7 +10,29 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_02_20_213917) do
+ActiveRecord::Schema.define(version: 2019_02_21_052520) do
+
+  create_table "cities", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+    t.bigint "department_id"
+    t.string "name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["department_id"], name: "index_cities_on_department_id"
+  end
+
+  create_table "countries", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+    t.string "name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "departments", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+    t.bigint "country_id"
+    t.string "name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["country_id"], name: "index_departments_on_country_id"
+  end
 
   create_table "inventory_transfers", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.bigint "sender_id"
@@ -80,6 +102,8 @@ ActiveRecord::Schema.define(version: 2019_02_20_213917) do
     t.datetime "updated_at", null: false
   end
 
+  add_foreign_key "cities", "departments"
+  add_foreign_key "departments", "countries"
   add_foreign_key "inventory_transfers", "users", column: "recipient_id"
   add_foreign_key "inventory_transfers", "users", column: "sender_id"
   add_foreign_key "inventory_transfers", "wares"

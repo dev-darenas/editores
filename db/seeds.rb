@@ -31,3 +31,50 @@ unless user.present?
   u.add_role :admin
   u.save!
 end
+
+# ================================= COUNTRIES, DEPARTMENTS, CITIES ====================================
+
+countries = [
+  {
+    country: {
+      name: "colombia",
+      departments: [
+        {
+          name: "bolivar",
+          cities: [
+            "cartagena"
+          ]
+        },
+        {
+          name: "valle del cauca",
+          cities: [
+            "cali",
+            "palmira",
+            "tulua"
+          ]
+        }
+      ]
+    }
+  }
+
+]
+
+
+City.delete_all
+Department.delete_all
+Country.delete_all
+ActiveRecord::Base.connection.execute("SET FOREIGN_KEY_CHECKS = 0")
+ActiveRecord::Base.connection.execute("TRUNCATE countries")
+ActiveRecord::Base.connection.execute("TRUNCATE departments")
+ActiveRecord::Base.connection.execute("TRUNCATE cities")
+ActiveRecord::Base.connection.execute("SET FOREIGN_KEY_CHECKS = 1")
+p "################# creating countries, departments and cities #################"
+countries.each_with_index do |country, c_index|
+  c = Country.create(id: (c_index+1), name: country[:country][:name])
+  country[:country][:departments].each_with_index do |department, d_index|
+    dpto = c.departments.create(id: d_index+1, name: department[:name])
+    department[:cities].each do |city|
+      dpto.cities.create(name: city)
+    end
+  end
+end

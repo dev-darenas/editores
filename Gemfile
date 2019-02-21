@@ -50,8 +50,11 @@ gem 'jwt', '~> 2.1.0'
 gem 'active_model_serializers', '~> 0.10.6'
 gem 'will_paginate', '~> 3.1.0'
 
-# Slim
+#Slim
 gem "slim-rails"
+
+#Geocoder
+gem "geocoder", "1.5.1"
 
 # Reduces boot times through caching; required in config/boot.rb
 gem 'bootsnap', '>= 1.1.0', require: false
