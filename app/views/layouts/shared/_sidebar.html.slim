@@ -65,6 +65,19 @@ ul#accordionSidebar.navbar-nav.bg-gradient-primary.sidebar.sidebar-dark.accordio
           | Listar
         a.collapse-item[href=new_inventory_transfer_path]
           | Crear
+  li.nav-item
+    a.nav-link.collapsed[href="#" data-toggle="collapse" data-target="#collapseOrders" aria-expanded="true" aria-controls="collapseOrders"]
+      i.fa.fa-fw.fa-exchange
+      span
+        | Pedidos
+    #collapseOrders.collapse[aria-labelledby="headingUtilities" data-parent="#accordionSidebar"]
+      .bg-white.py-2.collapse-inner.rounded
+        h6.collapse-header
+          | Administrar Pedidos:
+        a.collapse-item[href=orders_path]
+          | Listar
+        a.collapse-item[href=new_order_path]
+          | Crear
   hr.sidebar-divider.d-none.d-md-block
   .text-center.d-none.d-md-inline
     button#sidebarToggle.rounded-circle.border-0

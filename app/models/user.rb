@@ -20,6 +20,9 @@ class User < ApplicationRecord
                 :foreign_key  => "received_id"
 
 
+  has_many :orders, :dependent => :destroy
+  has_many :wares, through: :orders
+
   def full_name
     "#{firstname} #{lastname}"
   end

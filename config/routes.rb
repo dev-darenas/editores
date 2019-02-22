@@ -1,7 +1,9 @@
 Rails.application.routes.draw do
   
+  resources :orders
   resources :inventory_transfers
   resources :load_wares
+  resources :orders_wares
   devise_for :users
   root to: 'page#index'
 

@@ -1,0 +1,63 @@
+.container-fluid
+  h1.h3.mb-2.text-gray-800
+    | Carga de Mercancía
+  .card.shadow.mb-4
+    .card-header.py-3
+      h6.m-0.font-weight-bold.text-primary
+        .pull-left
+          | Listado
+        .pull-right
+          a.btn.btn-primary.btn-icon-split[href=new_order_path]
+            span.icon.text-white-50
+              i.fa.fa-plus
+            span.text
+              | Crear Pedido
+    .card-body
+      .table-responsive
+        table#dataTable.table.table-bordered[width="100%" cellspacing="0"]
+          thead
+            tr
+              th.text-center
+                | Pedido
+              th
+                | Nombre
+              th
+                | Ciudad
+              th
+                | Dirección
+              th
+                | Barrio
+              th
+                | Fecha Pago
+              th
+                | Cuota
+              th
+                | Total Pagado
+              th.text-center[colspan="3"]
+                | Acciones
+          tbody
+            - @orders.each do |order|
+              tr
+                td.text-center
+                  = order.code
+                td
+                  = order.client_name
+                td
+                  = order.city.name.capitalize
+                td
+                  = order.address_one
+                td
+                  = order.neighborhood_address_one
+                td
+                  = order.payment_date.strftime("%F")
+                td
+                  = number_to_currency(order.quota_amount)
+                td
+                  = number_to_currency(order.total_paid)
+                td.text-center
+                  = link_to 'Ver', order
+                td.text-center
+                  = link_to 'Editar', edit_order_path(order)
+                td.text-center
+                  = link_to 'Eliminar', order, data: { confirm: 'Esta seguro de eliminar este registro?' }, method: :delete
+
