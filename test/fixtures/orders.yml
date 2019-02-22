@@ -1,0 +1,51 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  code: MyString
+  department: one
+  city: one
+  date: 2019-02-21
+  client_name: MyString
+  client_phone: MyString
+  spouse_name: MyString
+  spouse_phone: MyString
+  address_one: MyString
+  neighborhood_address_one: MyString
+  address_two: MyString
+  neighborhood_address_two: MyString
+  familiar_reference: MyString
+  familiar_reference_phone: MyString
+  personal_reference: MyString
+  personal_reference_phone: MyString
+  payment_date: 2019-02-21
+  observations: MyText
+  quota_quantity: 1
+  quota_amount: 9.99
+  total_paid: 9.99
+  latitude: 9.99
+  longitude: 9.99
+
+two:
+  code: MyString
+  department: two
+  city: two
+  date: 2019-02-21
+  client_name: MyString
+  client_phone: MyString
+  spouse_name: MyString
+  spouse_phone: MyString
+  address_one: MyString
+  neighborhood_address_one: MyString
+  address_two: MyString
+  neighborhood_address_two: MyString
+  familiar_reference: MyString
+  familiar_reference_phone: MyString
+  personal_reference: MyString
+  personal_reference_phone: MyString
+  payment_date: 2019-02-21
+  observations: MyText
+  quota_quantity: 1
+  quota_amount: 9.99
+  total_paid: 9.99
+  latitude: 9.99
+  longitude: 9.99

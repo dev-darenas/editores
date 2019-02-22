@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_02_21_052520) do
+ActiveRecord::Schema.define(version: 2019_02_21_190319) do
 
   create_table "cities", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.bigint "department_id"
@@ -57,6 +57,50 @@ ActiveRecord::Schema.define(version: 2019_02_21_052520) do
     t.text "observations"
     t.index ["user_id"], name: "index_load_wares_on_user_id"
     t.index ["ware_id"], name: "index_load_wares_on_ware_id"
+  end
+
+  create_table "orders", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+    t.string "code"
+    t.bigint "department_id"
+    t.bigint "city_id"
+    t.date "date"
+    t.string "client_name"
+    t.string "client_phone"
+    t.string "spouse_name"
+    t.string "spouse_phone"
+    t.string "address_one"
+    t.string "neighborhood_address_one"
+    t.string "address_two"
+    t.string "neighborhood_address_two"
+    t.string "familiar_reference"
+    t.string "familiar_reference_phone"
+    t.string "personal_reference"
+    t.string "personal_reference_phone"
+    t.date "payment_date"
+    t.text "observations"
+    t.integer "quota_quantity", default: 0
+    t.decimal "quota_amount", precision: 10, default: "0"
+    t.decimal "total_paid", precision: 10, default: "0"
+    t.decimal "latitude", precision: 10, default: "0"
+    t.decimal "longitude", precision: 10, default: "0"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.bigint "user_id"
+    t.index ["city_id"], name: "index_orders_on_city_id"
+    t.index ["department_id"], name: "index_orders_on_department_id"
+    t.index ["user_id"], name: "index_orders_on_user_id"
+  end
+
+  create_table "orders_wares", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+    t.bigint "order_id"
+    t.bigint "ware_id"
+    t.integer "quantity", default: 0
+    t.decimal "total", precision: 10, default: "0"
+    t.text "observations"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["order_id"], name: "index_orders_wares_on_order_id"
+    t.index ["ware_id"], name: "index_orders_wares_on_ware_id"
   end
 
   create_table "roles", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
@@ -109,4 +153,8 @@ ActiveRecord::Schema.define(version: 2019_02_21_052520) do
   add_foreign_key "inventory_transfers", "wares"
   add_foreign_key "load_wares", "users"
   add_foreign_key "load_wares", "wares"
+  add_foreign_key "orders", "cities"
+  add_foreign_key "orders", "departments"
+  add_foreign_key "orders_wares", "orders"
+  add_foreign_key "orders_wares", "wares"
 end
