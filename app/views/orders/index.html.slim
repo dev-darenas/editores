@@ -33,7 +33,7 @@
                 | Cuota
               th
                 | Total Pagado
-              th.text-center[colspan="3"]
+              th.text-center[colspan="4"]
                 | Acciones
           tbody
             - @orders.each do |order|
@@ -56,6 +56,8 @@
                   = number_to_currency(order.total_paid)
                 td.text-center
                   = link_to 'Ver', order
+                td.text-center
+                  = link_to 'Pagos', order_payments_path(order)
                 td.text-center
                   = link_to 'Editar', edit_order_path(order)
                 td.text-center

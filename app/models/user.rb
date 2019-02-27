@@ -6,22 +6,25 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
 
-  validates :firstname, presence: true
-  validates :lastname, presence: true
-  validates :cellphone, presence: true
+  validates :firstname,
+            :lastname,
+            :cellphone,
+            presence: true
 
 
-  has_many      :sent, 
-                :class_name => "Ware",
-                :foreign_key  => "sent_id"
+  has_many  :sent, 
+            :class_name => "Ware",
+            :foreign_key  => "sent_id"
 
-  has_many      :received, 
-                :class_name => "Ware", 
-                :foreign_key  => "received_id"
+  has_many  :received, 
+            :class_name => "Ware", 
+            :foreign_key  => "received_id"
 
 
   has_many :orders, :dependent => :destroy
   has_many :wares, through: :orders
+
+  has_many :payments, through: :orders
 
   def full_name
     "#{firstname} #{lastname}"

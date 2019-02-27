@@ -59,6 +59,9 @@ gem "geocoder", "1.5.1"
 #Nested Forms
 gem 'simple_form', '4.1.0'
 
+
+gem 'business_time', '0.9.3'
+
 # Reduces boot times through caching; required in config/boot.rb
 gem 'bootsnap', '>= 1.1.0', require: false
 

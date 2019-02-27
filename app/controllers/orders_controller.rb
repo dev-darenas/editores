@@ -66,6 +66,10 @@ class OrdersController < ApplicationController
     end
   end
 
+  def payments
+    @payments = current_user.orders.find(params[:order_id]).payments
+  end
+
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_order

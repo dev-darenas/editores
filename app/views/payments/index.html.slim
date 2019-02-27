@@ -1,0 +1,27 @@
+h1 Listing payments
+
+table
+  thead
+    tr
+      th Order
+      th Total paid
+      th Date
+      th Status
+      th
+      th
+      th
+
+  tbody
+    - @payments.each do |payment|
+      tr
+        td = payment.order
+        td = payment.total_paid
+        td = payment.date
+        td = payment.status
+        td = link_to 'Show', payment
+        td = link_to 'Edit', edit_payment_path(payment)
+        td = link_to 'Destroy', payment, data: { confirm: 'Are you sure?' }, method: :delete
+
+br
+
+= link_to 'New Payment', new_payment_path

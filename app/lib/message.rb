@@ -19,4 +19,8 @@ class Message
   def self.unauthorized
     'Unauthorized request'
   end
+
+  def self.far_from_client
+    'Por Favor dirijase a la dirección del cliente para realizar el respectivo cobro'
+  end
 end

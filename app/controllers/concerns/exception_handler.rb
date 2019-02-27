@@ -8,19 +8,21 @@ module ExceptionHandler
   class MissingToken < StandardError; end
   class InvalidToken < StandardError; end
 
-  class TransferenceSameAccount < StandardError; end
-  class InsufficientBalance < StandardError; end
-  class InsufficientAmount < StandardError; end
-  class BudgetAlreadyExist < StandardError; end
-  class BudgetSameYear < StandardError; end
-  class BudgetSameMonth < StandardError; end
-  class BudgetMonthOrder < StandardError; end
-  class BudgetPreviousEmpty < StandardError; end
+  class FarFromClient < StandardError; end
+
+  # class TransferenceSameAccount < StandardError; end
+  # class InsufficientBalance < StandardError; end
+  # class InsufficientAmount < StandardError; end
+  # class BudgetAlreadyExist < StandardError; end
+  # class BudgetSameYear < StandardError; end
+  # class BudgetSameMonth < StandardError; end
+  # class BudgetMonthOrder < StandardError; end
+  # class BudgetPreviousEmpty < StandardError; end
   
-  class UserIsNotAdmin < StandardError; end
-  class UserIsNotValid < StandardError; end
-  class UserHasNotDefaultAccount < StandardError; end
-  class CategoryAndConceptDoesNotMatch < StandardError; end
+  # class UserIsNotAdmin < StandardError; end
+  # class UserIsNotValid < StandardError; end
+  # class UserHasNotDefaultAccount < StandardError; end
+  # class CategoryAndConceptDoesNotMatch < StandardError; end
 
   included do
 
@@ -30,7 +32,8 @@ module ExceptionHandler
     rescue_from ExceptionHandler::MissingToken, with: :four_twenty_two
     rescue_from ExceptionHandler::InvalidToken, with: :four_twenty_two
 
-    
+    rescue_from ExceptionHandler::FarFromClient, with: :far_from_client
+
     rescue_from ActiveRecord::RecordNotFound do |e|
       json_response({ message: e.message }, :not_found)
     end
@@ -51,6 +54,10 @@ module ExceptionHandler
   # JSON response with message; Status code 401 - Unauthorized
   def unauthorized_request(e)
     json_response({ message: e.message }, :unauthorized)
+  end
+
+  def far_from_client(e)
+    json_response({ message: e.message}, :unprocessable_entity)
   end
 
   def get_message(error)

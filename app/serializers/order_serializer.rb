@@ -1,5 +1,36 @@
 class OrderSerializer < ActiveModel::Serializer
-  attributes :id, :code, :date, :client_name, :client_phone, :spouse_name, :spouse_phone, :address_one, :neighborhood_address_one, :address_two, :neighborhood_address_two, :familiar_reference, :familiar_reference_phone, :personal_reference, :personal_reference_phone, :payment_date, :observations, :quota_quantity, :quota_amount, :total_paid, :latitude, :longitude
+  include ActionView::Helpers::NumberHelper
+
+  attributes :id,
+             :code,
+             :client_name,
+             :client_phone,
+             :quota_amount,
+             :latitude,
+             :longitude,
+             :payment_pending,
+             :address
+
   has_one :department
   has_one :city
+
+  def payment_pending
+    number_to_currency(object.quota_amount)
+  end
+
+  def address
+    [
+      object.address_one,
+      object.neighborhood_address_one,
+      object.city.name.capitalize
+    ].join(', ')
+  end
+
+  def latitude
+    object.latitude.to_f
+  end
+
+  def longitude
+    object.longitude.to_f
+  end
 end
