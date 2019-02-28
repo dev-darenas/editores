@@ -2,7 +2,7 @@ Rails.application.routes.draw do
   
   resources :payments
   resources :orders do
-    get 'payments'
+    get :payments
   end
   resources :inventory_transfers
   resources :load_wares
@@ -23,6 +23,10 @@ Rails.application.routes.draw do
     scope :api do
       resources :payments
       resources :orders
+      resources :wares, only: :index
+      resources :departments, only: :index do
+        get :cities
+      end
       get 'coordinates', to: 'orders#coordinates'
     end
   end

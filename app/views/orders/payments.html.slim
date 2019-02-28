@@ -33,7 +33,7 @@
                 td
                   = number_to_currency(payment.total_paid)
                 td[class=payment.row_status]
-                  = payment.status.humanize
+                  = payment.row_label
                 td.text-center
                   = link_to 'Ver', payment
                 td.text-center

@@ -19,4 +19,15 @@ class Payment < ApplicationRecord
       ""
     end
   end
+
+  def row_label
+    case status
+    when "pending"
+      "Pendiente"
+    when "paid"
+      "Pagado" 
+    else
+      "Aplazado"
+    end
+  end
 end

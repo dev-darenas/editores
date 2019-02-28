@@ -11,7 +11,12 @@ module V1
     # POST /orders
     def create
       # account = current_user.accounts.create!(account_params)
-      # json_response(account, :created)
+      p "@@@@@@@@@@@@@@@@@@@@@@@@"
+      p "@@@@@@@@@@@@@@@@@@@@@@@@"
+      p params.inspect
+      p "@@@@@@@@@@@@@@@@@@@@@@@@"
+      p "@@@@@@@@@@@@@@@@@@@@@@@@"
+      json_response({}, :created)
     end
 
     # GET /orders/:id

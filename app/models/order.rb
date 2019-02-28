@@ -27,7 +27,7 @@ class Order < ApplicationRecord
   geocoded_by :address
 
   # after_validation :geocode, :if => :address_changed?
-  before_validation :set_coords_to_nil, :if => :address_changed?
+  # before_validation :set_coords_to_nil, :if => :address_changed?
 
   # after_validation :geocode
   # after_validation :geocode, if: ->(obj){ obj.latitude.present? and obj.longitude.present? }
@@ -62,16 +62,16 @@ class Order < ApplicationRecord
   end
   
 
-  def address_changed?
-    attrs = %w(      
-      department.country.name,
-      department.name,
-      city.name,
-      address_one,
-      neighborhood_address_one
-    )
-    attrs.any?{|a| send "#{a}_changed?"}
-  end
+  # def address_changed?
+  #   attrs = %w(
+  #     department.country.name,
+  #     department.name,
+  #     city.name,
+  #     address_one,
+  #     neighborhood_address_one
+  #   )
+  #   attrs.any?{|a| send "#{a}_changed?"}
+  # end
 
 
   def set_coords_to_nil
