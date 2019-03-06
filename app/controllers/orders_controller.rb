@@ -15,8 +15,6 @@ class OrdersController < ApplicationController
   # GET /orders/new
   def new
     @order = Order.new
-    @order.code = Order.all.length + 1
-    @order.user = current_user
     @order.orders_wares.build
   end
 
@@ -66,9 +64,9 @@ class OrdersController < ApplicationController
     end
   end
 
-  def payments
-    @payments = current_user.orders.find(params[:order_id]).payments
-  end
+  # def payments
+  #   @payments = current_user.orders.find(params[:order_id]).payments
+  # end
 
   private
     # Use callbacks to share common setup or constraints between actions.
@@ -80,6 +78,7 @@ class OrdersController < ApplicationController
     def order_params
       params.require(:order).permit(
         :code,
+        :due_id,
         :department_id,
         :city_id,
         :date,

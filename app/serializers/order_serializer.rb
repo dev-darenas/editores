@@ -14,6 +14,8 @@ class OrderSerializer < ActiveModel::Serializer
   has_one :department
   has_one :city
 
+  has_many :payments
+
   def payment_pending
     number_to_currency(object.quota_amount)
   end

@@ -4,14 +4,21 @@ module V1
 
     # GET /payments
     def index
-      payments = current_user.payments.near([params[:latitude], params[:longitude]]).are_pending.today
-      json_response(payments)
+      # payments = current_user.payments.near([params[:latitude], params[:longitude]]).today
+      orders = current_user.orders.near([params[:latitude], params[:longitude]])  .where(payment_date: Date.today, status: :pending)
+      json_response(orders)
     end
 
     # POST /payments
     def create
-      # payment = current_user.payments.create!(payment_params)
-      # json_response(payment, :created)
+      payment = Payment.new(payment_params)
+      payment.date = Date.today
+      payment.save
+      order = payment.order.update!(
+        payment_date: params[:payment_date]
+        # status: order.check_status
+      )
+      json_response(payment, :created)
     end
 
     # GET /payments/:id
@@ -23,11 +30,10 @@ module V1
     def update
       distance = Geocoder::Calculations.distance_between(
         [params[:latitude],params[:longitude]],
-        [@payment.latitude, @payment.longitude],
-        units: :km
+        [@payment.latitude, @payment.longitude]
       )
 
-      raise(ExceptionHandler::FarFromClient, Message.far_from_client) if distance > 0.5
+      # raise(ExceptionHandler::FarFromClient, Message.far_from_client) if distance > 0.5
 
       @payment.update(payment_params)
       json_response(@payment)
@@ -43,9 +49,9 @@ module V1
 
     def payment_params
       # whitelist acccout params
-      params.permit(
-        :status,
-        :date,
+      params.require(:payment).permit(
+        :order_id,
+        :total_paid,
         :observations,
         :latitude,
         :longitude

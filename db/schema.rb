@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_02_26_145638) do
+ActiveRecord::Schema.define(version: 2019_03_06_030724) do
 
   create_table "cities", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.bigint "department_id"
@@ -32,6 +32,14 @@ ActiveRecord::Schema.define(version: 2019_02_26_145638) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["country_id"], name: "index_departments_on_country_id"
+  end
+
+  create_table "dues", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+    t.string "name"
+    t.integer "periodicity"
+    t.decimal "interests", precision: 10
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "inventory_transfers", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
@@ -86,8 +94,11 @@ ActiveRecord::Schema.define(version: 2019_02_26_145638) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.bigint "user_id"
+    t.integer "status", default: 0
+    t.bigint "due_id"
     t.index ["city_id"], name: "index_orders_on_city_id"
     t.index ["department_id"], name: "index_orders_on_department_id"
+    t.index ["due_id"], name: "index_orders_on_due_id"
     t.index ["user_id"], name: "index_orders_on_user_id"
   end
 

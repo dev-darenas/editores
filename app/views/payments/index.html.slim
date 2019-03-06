@@ -1,27 +1,49 @@
-h1 Listing payments
+.container-fluid
+  h1.h3.mb-2.text-gray-800
+    | Pagos
+  .card.shadow.mb-4
+    .card-header.py-3
+      h6.m-0.font-weight-bold.text-primary
+        .pull-left
+          | Listado
+        .pull-right
+          a.btn.btn-primary.btn-icon-split[href=new_order_payment_path(params[:order_id])]
+            span.icon.text-white-50
+              i.fa.fa-plus
+            span.text
+              | Crear Pago
+    .card-body
+      .table-responsive
+        table#dataTable.table.table-bordered[width="100%" cellspacing="0"]
+          thead
+            tr
+              th
+                | Fecha de Pago
+              th
+                | Cuota
+              th
+                | Observaciones
+              th.text-center[colspan="3"]
+                | Acciones
+          tbody
+            - @payments.each do |payment|
+              tr
+                td
+                  = payment.date.strftime("%F")
+                td
+                  = number_to_currency(payment.total_paid)
+                td[class=payment.row_status]
+                  = payment.observations
+                td.text-center
+                  = link_to 'Ver', order_payment_path(@order, payment)
+                td.text-center
+                  = link_to 'Editar', edit_order_payment_path(@order, payment)
+                td.text-center
+                  = link_to 'Eliminar', order_payment_path(@order, payment), data: { confirm: 'Esta seguro de eliminar este registro?' }, method: :delete
 
-table
-  thead
-    tr
-      th Order
-      th Total paid
-      th Date
-      th Status
-      th
-      th
-      th
 
-  tbody
-    - @payments.each do |payment|
-      tr
-        td = payment.order
-        td = payment.total_paid
-        td = payment.date
-        td = payment.status
-        td = link_to 'Show', payment
-        td = link_to 'Edit', edit_payment_path(payment)
-        td = link_to 'Destroy', payment, data: { confirm: 'Are you sure?' }, method: :delete
-
-br
-
-= link_to 'New Payment', new_payment_path
+      .pull-right.mt-5
+      .pull-left.mt-5
+        a.btn.btn-primary.btn-icon-split.pull-left[href=orders_path]
+          span.text
+            | Atrás

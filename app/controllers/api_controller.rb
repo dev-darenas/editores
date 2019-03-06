@@ -35,9 +35,4 @@ class ApiController < ActionController::API
       role:       user.roles.first.name
     }
   end
-
-  def get_softpymes_config(user)
-    { softpymes_id: user.softpymes_id, is_softpymes_synced: user.is_softpymes_synced }
-  end
-
 end

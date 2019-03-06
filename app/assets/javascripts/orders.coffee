@@ -35,3 +35,6 @@ jQuery ($) ->
 
       $('body').on 'click', '.destroy_duplicate_nested_form', (e) ->
         $(this).closest('tbody tr').slideUp().remove()
+
+    # $('.order_orders_wares_quantity > input').on 'change', (e) ->
+      # $(this).val();

@@ -8,10 +8,13 @@ class Order < ApplicationRecord
   has_many :orders_wares
   has_many :payments, :dependent => :delete_all
 
+  has_one :due
+
   # attr_accessible :title, :assets_attributes
   accepts_nested_attributes_for :orders_wares, allow_destroy: true
 
   validates :client_name, 
+            :due_id,
             :client_phone,
             :neighborhood_address_one,
             :address_one,
@@ -28,54 +31,58 @@ class Order < ApplicationRecord
 
   # after_validation :geocode, :if => :address_changed?
   # before_validation :set_coords_to_nil, :if => :address_changed?
+  after_validation :geocode, if: -> (obj){  obj.department.present? and obj.city.present? and obj.address.present? and obj.address_changed? }
+  after_validation :lat_changed?
 
   # after_validation :geocode
   # after_validation :geocode, if: ->(obj){ obj.latitude.present? and obj.longitude.present? }
-  validates :latitude, :presence => {message: "Not a valid location on Google Maps, please check name address & country fields" }
+  # validates :latitude, :presence => {message: "Not a valid location on Google Maps, please check name address & country fields" }
+  # after_create :create_payments
 
-
-  after_create :create_payments
-
-
+  enum status: [:pending, :returned, :completed]
 
   def address
     [
       department.country.name,
-      department.name,
+      # department.name,
       city.name,
       address_one,
       neighborhood_address_one
     ].compact.join(', ')
   end
 
-
-  def create_payments
-    quota_quantity.times do |index|
-      payment = self.payments.create(
-        total_paid: self.quota_amount,
-        date: index == 0 ? self.date : 15.business_days.after(self.payments.order(date: :asc).pluck(:date).last),# n.days depending of selection in order
-        status: :pending,
-        latitude: self.latitude,
-        longitude: self.longitude
-      )
-    end
+  def check_status
+    :pending
   end
-  
 
-  # def address_changed?
-  #   attrs = %w(
-  #     department.country.name,
-  #     department.name,
-  #     city.name,
-  #     address_one,
-  #     neighborhood_address_one
-  #   )
-  #   attrs.any?{|a| send "#{a}_changed?"}
+
+  # def create_payments
+  #   quota_quantity.times do |index|
+  #     payment = self.payments.create(
+  #       total_paid: self.quota_amount,
+  #       date: index == 0 ? self.payment_date : 15.business_days.after(self.payments.order(date: :asc).pluck(:date).last),# n.days depending of selection in order
+  #       status: :pending,
+  #       latitude: self.latitude,
+  #       longitude: self.longitude
+  #     )
+  #   end
   # end
 
+  def lat_changed?
+    if (self.address_changed?)
+      if !(self.latitude_changed?)
+        self.errors.add(:address, "is not valid")
+        return false
+      end
+    end
+    return true
+  end
 
-  def set_coords_to_nil
-    self.latitude = nil
-    self.longitude = nil
+  def address_changed?
+    attrs = %w(
+      address_one
+      neighborhood_address_one
+    )
+    attrs.any?{|a| send "#{a}_changed?"}
   end
 end

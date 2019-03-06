@@ -66,8 +66,21 @@ ul#accordionSidebar.navbar-nav.bg-gradient-primary.sidebar.sidebar-dark.accordio
         a.collapse-item[href=new_inventory_transfer_path]
           | Crear
   li.nav-item
+    a.nav-link.collapsed[href="#" data-toggle="collapse" data-target="#collapseDues" aria-expanded="true" aria-controls="collapseDues"]
+      i.fa.fa-fw.fa-money
+      span
+        | Periodicidad Cuotas
+    #collapseDues.collapse[aria-labelledby="headingUtilities" data-parent="#accordionSidebar"]
+      .bg-white.py-2.collapse-inner.rounded
+        h6.collapse-header
+          | Administrar Cuotas:
+        a.collapse-item[href=dues_path]
+          | Listar
+        a.collapse-item[href=new_due_path]
+          | Crear
+  li.nav-item
     a.nav-link.collapsed[href="#" data-toggle="collapse" data-target="#collapseOrders" aria-expanded="true" aria-controls="collapseOrders"]
-      i.fa.fa-fw.fa-exchange
+      i.fa.fa-fw.fa-id-card-o
       span
         | Pedidos
     #collapseOrders.collapse[aria-labelledby="headingUtilities" data-parent="#accordionSidebar"]

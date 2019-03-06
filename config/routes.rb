@@ -1,9 +1,11 @@
 Rails.application.routes.draw do
   
-  resources :payments
+  resources :dues
+  resources :payments, only: [:create, :update, :destroy]
   resources :orders do
-    get :payments
+    resources :payments
   end
+
   resources :inventory_transfers
   resources :load_wares
   resources :orders_wares
@@ -21,8 +23,11 @@ Rails.application.routes.draw do
   
   scope module: :v1, constraints: ApiVersion.new('v1') do
     scope :api do
-      resources :payments
-      resources :orders
+
+      resources :payments, only: :index
+      resources :orders do
+        resources :payments, only: :create
+      end
       resources :wares, only: :index
       resources :departments, only: :index do
         get :cities

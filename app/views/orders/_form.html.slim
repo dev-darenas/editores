@@ -7,12 +7,12 @@
             .form-group.row
               .col-sm-10.mb-3.mb-sm-0
               .col-sm-2.text-left
-                = f.input :code, readonly: true, label: 'Pedido', error: 'Username is mandatory, please specify one'
+                = f.input :code, label: 'Pedido', error: 'Username is mandatory, please specify one'
             .form-group.row
               .col-sm-4.mb-3.mb-sm-0.text-left
-                = f.association :city, label: 'Ciudad:'
-              .col-sm-4.mb-3.mb-sm-0.text-left
                 = f.association :department, label: 'Depto:'
+              .col-sm-4.mb-3.mb-sm-0.text-left
+                = f.association :city, label: 'Ciudad:'
               .col-sm-4.mb-3.mb-sm-0.text-left
                 = f.input :date, as: :date, label: 'Fecha:'
             .form-group.row
@@ -49,17 +49,19 @@
               .col-sm-4.text-left
                 = f.input :personal_reference_phone, as: :tel, label: 'Tel:'
             .form-group.row
-              .col-sm-4.mb-3.mb-sm-0.text-left
+              .col-sm-3.mb-3.mb-sm-0.text-left
+                = f.input :due_id, collection: Due.all, label: 'Periodicidad', required: :true
+              .col-sm-3.mb-3.mb-sm-0.text-left
                 = f.input :quota_quantity, label: 'Cuotas:'
-              .col-sm-4.text-left
+              .col-sm-3.text-left
                 = f.input :quota_amount, as: :decimal, label: 'De: ($)'
-              .col-sm-4.text-left
+              .col-sm-3.text-left
                 = f.input :payment_date, as: :date, label: 'A partir del:'
 
             .form-group.row
               .col-sm-4.mb-3.mb-sm-0.text-left
               .col-sm-4.text-left
-                = f.association :user, label: 'Asesor Responsable:', label_method: :full_name, disabled: true
+                = f.association :user, label: 'Asesor Responsable:', label_method: :full_name
 
             .form-group.row
 
@@ -73,9 +75,9 @@
                 thead
                   tr
                     th
-                      | Cantidad
-                    th
                       | Mercancía
+                    th
+                      | Cantidad
                     th
                       | Total
                     th.text-center
@@ -84,9 +86,9 @@
                   = f.simple_fields_for :orders_wares do |wares_form|
                     .duplicatable_nested_form
                       tr
-                        td = wares_form.input :quantity, label: false, :input_html => { min: 0 }
-                        td = wares_form.association :ware, label: false
-                        td = wares_form.input :total, label: false, :input_html => { min: 0 }, readonly: true
+                        td = wares_form.association :ware, label: false, required: true
+                        td = wares_form.input :quantity, label: false, :input_html => { min: 0 }, required: true
+                        td = wares_form.input :total, label: false, :input_html => { min: 0 }, required: true
                         td
                           - if wares_form.object.new_record?
                             a.btn.btn-danger.destroy_duplicate_nested_form[data-remote=true]

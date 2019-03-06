@@ -1,0 +1,42 @@
+.container-fluid
+  h1.h3.mb-2.text-gray-800
+    | Carga de Mercancía
+  .card.shadow.mb-4
+    .card-header.py-3
+      h6.m-0.font-weight-bold.text-primary
+        .pull-left
+          | Listado
+        .pull-right
+          a.btn.btn-primary.btn-icon-split[href=new_due_path]
+            span.icon.text-white-50
+              i.fa.fa-plus
+            span.text
+              | Crear Couta
+    .card-body
+      .table-responsive
+        table#dataTable.table.table-bordered[width="100%" cellspacing="0"]
+          thead
+            tr
+              th
+                | Nombre
+              th
+                | Periodicidad (dias)
+              th
+                | Intereses (%)
+              th.text-center[colspan="3"]
+                | Acciones
+          tbody
+            - @dues.each do |due|
+              tr
+                td
+                  = due.name
+                td
+                  = due.periodicity
+                td
+                  = due.interests
+                td
+                  = link_to 'Ver', due
+                td
+                  = link_to 'Editar', edit_due_path(due)
+                td
+                  = link_to 'Eliminar', due, data: { confirm: 'Esta seguro de eliminar este registro?' }, method: :delete

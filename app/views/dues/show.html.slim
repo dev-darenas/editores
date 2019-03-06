@@ -1,6 +1,6 @@
 .container-fluid
   h1.h3.mb-2.text-gray-800
-    | Usuario
+    | Cuotas - Intereses
   .card.shadow.mb-4
     .card-header.py-3
       h6.m-0.font-weight-bold.text-primary
@@ -10,26 +10,29 @@
       p#notice = notice
       .row
         .col-lg-4
+          .card.mb-1.py-1.border-left-primary
+            .card-body
+              strong Nombre:&nbsp
+              = @due.name
         .col-lg-4
           .card.mb-1.py-1.border-left-primary
             .card-body
-              strong Fecha de Pago:&nbsp
-              = @payment.date.strftime("%F")
-          .card.mb-1.py-1.border-left-primary
-            .card-body
-              strong Total Pagado:&nbsp
-              = number_to_currency(@payment.total_paid)
-          .card.mb-1.py-1.border-left-primary
-            .card-body
-              strong Observaciones:&nbsp
-              = @payment.observations
+              strong Periodicidad:&nbsp
+              = @due.periodicity
+              strong &nbspDias
         .col-lg-4
+          .card.mb-1.py-1.border-left-primary
+            .card-body
+              strong Intereses:&nbsp
+              = @due.interests
+              strong &nbsp%
 
       .pull-right.mt-5
-        a.btn.btn-primary.btn-icon-split.pull-left[href=edit_order_payment_path(@order, @payment)]
+        a.btn.btn-primary.btn-icon-split.pull-left[href=edit_due_path(@due)]
           span.text
             | Editar
       .pull-left.mt-5
-        a.btn.btn-primary.btn-icon-split.pull-left[href=order_payments_path]
+        a.btn.btn-primary.btn-icon-split.pull-left[href=dues_path]
           span.text
             | Atrás
+

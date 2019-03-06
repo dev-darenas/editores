@@ -59,7 +59,6 @@ countries = [
 
 ]
 
-
 City.delete_all
 Department.delete_all
 Country.delete_all
@@ -78,3 +77,5 @@ countries.each_with_index do |country, c_index|
     end
   end
 end
+
+
