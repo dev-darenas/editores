@@ -1,0 +1,15 @@
+var coords = new google.maps.LatLng(4.5877987, -83.3863967);
+
+var mapOptions = {
+  center: coords,
+  zoom: 14
+};
+
+var map = new google.maps.Map(document.getElementById('activities-map'), mapOptions);
+
+<% @orders.each do |order| %>
+  addMarker(<%= j order.latitude.to_s %>, <%= j order.longitude.to_s %>, map, 'order', "<%= j order.client_name %>");
+  <% order.payments.where(date: params[:date]).each do |payment| %>
+    addMarker(<%= j payment.latitude.to_s %>, <%= j payment.longitude.to_s %>, map, 'payment', "<%= j order.client_name %>");
+  <% end %>
+<% end %>

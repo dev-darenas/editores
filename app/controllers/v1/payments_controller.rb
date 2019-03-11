@@ -5,7 +5,7 @@ module V1
     # GET /payments
     def index
       # payments = current_user.payments.near([params[:latitude], params[:longitude]]).today
-      orders = current_user.orders.near([params[:latitude], params[:longitude]])  .where(payment_date: Date.today, status: :pending)
+      orders = current_user.orders.near([params[:latitude], params[:longitude]]).where(payment_date: Date.today, status: :pending)
       json_response(orders)
     end
 

@@ -1,0 +1,18 @@
+p#notice = notice
+
+p
+  strong User:
+  = @activity.user
+p
+  strong Date:
+  = @activity.date
+p
+  strong Latitude:
+  = @activity.latitude
+p
+  strong Longitude:
+  = @activity.longitude
+
+=> link_to 'Edit', edit_activity_path(@activity)
+'|
+=< link_to 'Back', activities_path

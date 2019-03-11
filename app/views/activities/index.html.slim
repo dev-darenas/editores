@@ -1,0 +1,19 @@
+.container-fluid
+  h1.h3.mb-2.text-gray-800
+    | Actividad de Usuarios
+  .card.shadow.mb-4
+    .card-header.py-3
+      = form_tag '/activities', :method => 'get', :id => "operations_search" do |f|
+        .form-group.row
+          .col-md-3.col-xs-6
+            = select_tag 'user_id', options_for_select(User.all.collect{ |u| [u.full_name, u.id] }, params[:user_id]), class: "form-control select required"
+          .col-md-3.col-xs-6
+            = date_field_tag 'date', params[:date], class: "form-control mx-1 date required", id: "date"
+          .pull-right
+            .input-group-append
+              button.btn.btn-primary type="submit" 
+                i.fa.fa-search.fa-sm
+
+    .card-body
+      #activities-map
+

@@ -25,6 +25,12 @@
               = @payment.observations
         .col-lg-4
 
+      .row.mt-5
+        .col-lg-2
+        .col-lg-8
+          #map
+        .col-lg-2
+
       .pull-right.mt-5
         a.btn.btn-primary.btn-icon-split.pull-left[href=edit_order_payment_path(@order, @payment)]
           span.text
@@ -33,3 +39,9 @@
         a.btn.btn-primary.btn-icon-split.pull-left[href=order_payments_path]
           span.text
             | Atrás
+
+
+javascript:
+  jQuery(document).ready(function () {
+    initMap(#{@order.latitude}, #{@order.longitude}, #{@payment.latitude}, #{@payment.longitude})
+  })

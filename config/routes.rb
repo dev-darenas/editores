@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
   
+  resources :activities
   resources :dues
   resources :payments, only: [:create, :update, :destroy]
   resources :orders do

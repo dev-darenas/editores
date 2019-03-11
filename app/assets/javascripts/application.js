@@ -18,6 +18,7 @@
 //= require bootstrap-sprockets
 //= require activestorage
 //= require_tree .
+//= require payments
 
 //= require js/sb-admin-2.min
 

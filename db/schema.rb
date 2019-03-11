@@ -10,7 +10,17 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_03_06_030724) do
+ActiveRecord::Schema.define(version: 2019_03_10_204938) do
+
+  create_table "activities", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+    t.bigint "user_id"
+    t.datetime "date"
+    t.decimal "latitude", precision: 10, scale: 6
+    t.decimal "longitude", precision: 10, scale: 6
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["user_id"], name: "index_activities_on_user_id"
+  end
 
   create_table "cities", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.bigint "department_id"
@@ -170,6 +180,7 @@ ActiveRecord::Schema.define(version: 2019_03_06_030724) do
     t.datetime "updated_at", null: false
   end
 
+  add_foreign_key "activities", "users"
   add_foreign_key "cities", "departments"
   add_foreign_key "departments", "countries"
   add_foreign_key "inventory_transfers", "users", column: "recipient_id"

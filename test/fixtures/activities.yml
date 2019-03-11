@@ -1,0 +1,13 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  user: one
+  date: 2019-03-10 15:49:38
+  latitude: 9.99
+  longitude: 9.99
+
+two:
+  user: two
+  date: 2019-03-10 15:49:38
+  latitude: 9.99
+  longitude: 9.99

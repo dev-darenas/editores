@@ -23,8 +23,8 @@ module V1
 
     # PUT /orders/:id
     def update
-      # @account.update(account_params)
-      # json_response(@account)
+      @order.update(status: :returned)
+      json_response(@order, :ok)
     end
 
     # DELETE /orders/:id
@@ -34,15 +34,8 @@ module V1
     end
 
     def coordinates
-      # orders = current_user.orders.near(params[:lat], params[:lng])
-      orders = Order.near(
-        [params[:lat], params[:long]]
-      ).where(user_id: current_user.id).
+      orders = current_user.orders.near([params[:latitude], params[:longitude]]).
       map { |e| {latitude: e.latitude.to_f, longitude: e.longitude.to_f} }
-
-      p "@@@@@@@@@@@@@@@@@@@@@@@@@@@"
-      p orders.inspect
-      p "@@@@@@@@@@@@@@@@@@@@@@@@@@@"
 
       json_response(orders)
     end

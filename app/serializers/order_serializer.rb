@@ -13,6 +13,7 @@ class OrderSerializer < ActiveModel::Serializer
 
   has_one :department
   has_one :city
+  has_one :user
 
   has_many :payments
 
