@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_03_10_204938) do
+ActiveRecord::Schema.define(version: 2019_03_11_162810) do
 
   create_table "activities", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.bigint "user_id"
@@ -106,7 +106,9 @@ ActiveRecord::Schema.define(version: 2019_03_10_204938) do
     t.bigint "user_id"
     t.integer "status", default: 0
     t.bigint "due_id"
+    t.bigint "country_id"
     t.index ["city_id"], name: "index_orders_on_city_id"
+    t.index ["country_id"], name: "index_orders_on_country_id"
     t.index ["department_id"], name: "index_orders_on_department_id"
     t.index ["due_id"], name: "index_orders_on_due_id"
     t.index ["user_id"], name: "index_orders_on_user_id"

@@ -20,12 +20,12 @@
           .card.mb-1.border-left-primary
             .card-body
               strong Ciudad:&nbsp
-              = @order.city.name.capitalize
+              = @order.try(:city).try(:name).try(:capitalize)
         .col-lg-4
           .card.mb-1.border-left-primary
             .card-body
               strong Depto:&nbsp
-              = @order.department.name.capitalize
+              = @order.try(:department).try(:name).try(:capitalize)
         .col-lg-4
           .card.mb-1.border-left-primary
             .card-body.text-center

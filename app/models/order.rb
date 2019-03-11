@@ -1,6 +1,7 @@
 class Order < ApplicationRecord
-  belongs_to :department
-  belongs_to :city
+  belongs_to :country, required: false
+  belongs_to :department, required: false
+  belongs_to :city, required: false
 
   belongs_to :user, required: false
   has_and_belongs_to_many :wares
@@ -27,12 +28,24 @@ class Order < ApplicationRecord
   validates :quota_quantity, presence: true, numericality: { only_integer: true, greater_than: 0 }
   validates :quota_amount, presence: true, numericality: { greater_than: 0 }
 
-  geocoded_by :address
+  # geocoded_by :address
+
+  reverse_geocoded_by :latitude, :longitude do |obj,results|
+    if geo = results.first
+      p "@@@@@@@@@"
+      p geo.inspect
+      p "@@@@@@@@@"
+      # obj.city    = geo.city
+      # obj.zipcode = geo.postal_code
+      # obj.country = geo.country_code
+    end
+  end
+  after_validation :reverse_geocode
 
   # after_validation :geocode, :if => :address_changed?
   # before_validation :set_coords_to_nil, :if => :address_changed?
-  after_validation :geocode, if: -> (obj){  obj.department.present? and obj.city.present? and obj.address.present? and obj.address_changed? }
-  after_validation :lat_changed?
+  # after_validation :geocode, if: -> (obj){  obj.department.present? and obj.city.present? and obj.address.present? and obj.address_changed? }
+  # after_validation :lat_changed?
 
   # after_validation :geocode
   # after_validation :geocode, if: ->(obj){ obj.latitude.present? and obj.longitude.present? }
@@ -44,7 +57,7 @@ class Order < ApplicationRecord
   def address
     [
       department.country.name,
-      # department.name,
+      department.name,
       city.name,
       address_one,
       neighborhood_address_one

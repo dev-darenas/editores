@@ -55,6 +55,19 @@ countries = [
         }
       ]
     }
+  },
+  {
+    country: {
+      name: "ecuador",
+      departments: [
+        {
+          name: "santo domingo tsachilas",
+          cities: [
+            "santo domingo de los colorados"
+          ]
+        }
+      ]
+    }
   }
 
 ]
@@ -63,9 +76,9 @@ City.delete_all
 Department.delete_all
 Country.delete_all
 ActiveRecord::Base.connection.execute("SET FOREIGN_KEY_CHECKS = 0")
-ActiveRecord::Base.connection.execute("TRUNCATE countries")
-ActiveRecord::Base.connection.execute("TRUNCATE departments")
 ActiveRecord::Base.connection.execute("TRUNCATE cities")
+ActiveRecord::Base.connection.execute("TRUNCATE departments")
+ActiveRecord::Base.connection.execute("TRUNCATE countries")
 ActiveRecord::Base.connection.execute("SET FOREIGN_KEY_CHECKS = 1")
 p "################# creating countries, departments and cities #################"
 countries.each_with_index do |country, c_index|

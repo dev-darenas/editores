@@ -1,6 +1,6 @@
 class ApplicationController < ActionController::Base
-  # before_action :authenticate_user!
-  # protect_from_forgery prepend: true
+  before_action :authenticate_user!
+  protect_from_forgery prepend: true
   # layout :layout_by_resource
   # before_action :authenticate
 

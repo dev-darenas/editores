@@ -30,9 +30,8 @@ Rails.application.routes.draw do
         resources :payments, only: :create
       end
       resources :wares, only: :index
-      resources :departments, only: :index do
-        get :cities
-      end
+      resources :countries, only: :index
+      resources :dues, only: :index
       get 'coordinates', to: 'orders#coordinates'
     end
   end

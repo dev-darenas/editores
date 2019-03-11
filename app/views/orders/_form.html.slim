@@ -9,9 +9,11 @@
               .col-sm-2.text-left
                 = f.input :code, label: 'Pedido', error: 'Username is mandatory, please specify one'
             .form-group.row
-              .col-sm-4.mb-3.mb-sm-0.text-left
+              .col-sm-2.mb-3.mb-sm-0.text-left
+                = f.association :country, label: 'Pais'
+              .col-sm-3.mb-3.mb-sm-0.text-left
                 = f.association :department, label: 'Depto:'
-              .col-sm-4.mb-3.mb-sm-0.text-left
+              .col-sm-3.mb-3.mb-sm-0.text-left
                 = f.association :city, label: 'Ciudad:'
               .col-sm-4.mb-3.mb-sm-0.text-left
                 = f.input :date, as: :date, label: 'Fecha:'

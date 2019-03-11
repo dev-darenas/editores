@@ -19,6 +19,7 @@
 //= require activestorage
 //= require_tree .
 //= require payments
+//= require Chart.bundle.min
 
 //= require js/sb-admin-2.min
 

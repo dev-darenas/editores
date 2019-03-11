@@ -5,22 +5,22 @@ task create_dues: :environment do
     {
       name: 'Diario',
       periodicity: 1,
-      interests: 1
+      interests: 0
     },
     {
       name: 'Semanal',
       periodicity: 8,
-      interests: 1
+      interests: 0
     },
     {
       name: 'Quincenal',
       periodicity: 15,
-      interests: 1
+      interests: 0
     },
     {
       name: 'Mensual',
       periodicity: 30,
-      interests: 1
+      interests: 0
     }
   ]
   p "################# creating dues #################"

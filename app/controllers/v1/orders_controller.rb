@@ -4,14 +4,18 @@ module V1
 
     # GET /orders
     def index
-      orders = current_user.orders
+      orders = current_user.orders.where(payment_date: Date.today)
       json_response(orders)
     end
+
+    # def orders
+    #   orders = current_user.orders
+    #   json_response(orders)
+    # end
 
     # POST /orders
     def create
       order = current_user.orders.new(order_params)
-      order.code = Order.all.length + 1
       order.save!
       json_response(order, :created)
     end
@@ -23,7 +27,7 @@ module V1
 
     # PUT /orders/:id
     def update
-      @order.update(status: :returned)
+      @order.update(order_params)
       json_response(@order, :ok)
     end
 
@@ -49,9 +53,11 @@ module V1
     def order_params
       params.require(:order).permit(
         :code,
+        :country_id,
         :department_id,
         :city_id,
         :date,
+        :status,
         :client_name,
         :client_phone,
         :spouse_name,
@@ -71,6 +77,7 @@ module V1
         :total_paid,
         :latitude,
         :longitude,
+        :due_id,
         orders_wares_attributes: [
           :ware_id,
           :quantity,

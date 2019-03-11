@@ -9,7 +9,8 @@ class OrderSerializer < ActiveModel::Serializer
              :latitude,
              :longitude,
              :payment_pending,
-             :address
+             :address,
+             :status
 
   has_one :department
   has_one :city
@@ -25,7 +26,7 @@ class OrderSerializer < ActiveModel::Serializer
     [
       object.address_one,
       object.neighborhood_address_one,
-      object.city.name.capitalize
+      # object.city.name.capitalize
     ].join(', ')
   end
 
