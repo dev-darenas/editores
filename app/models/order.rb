@@ -32,9 +32,6 @@ class Order < ApplicationRecord
 
   reverse_geocoded_by :latitude, :longitude do |obj,results|
     if geo = results.first
-      p "@@@@@@@@@"
-      p geo.inspect
-      p "@@@@@@@@@"
       # obj.city    = geo.city
       # obj.zipcode = geo.postal_code
       # obj.country = geo.country_code

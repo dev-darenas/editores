@@ -38,7 +38,7 @@ module V1
     end
 
     def coordinates
-      orders = current_user.orders.where(payment_date: Date.today).near([params[:latitude], params[:longitude]]).
+      orders = current_user.orders.where(payment_date: Date.today, status: :pending).near([params[:latitude], params[:longitude]]).
       map { |e| {latitude: e.latitude.to_f, longitude: e.longitude.to_f} }
 
       json_response(orders)
