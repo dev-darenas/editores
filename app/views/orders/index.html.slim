@@ -30,10 +30,10 @@
               th
                 | Fecha Pago
               th
-                | Cuota
-              th
                 | Total
-              th.text-center[colspan="4"]
+              th
+                | Pagado
+              th.text-center[colspan="3"]
                 | Acciones
           tbody
             - @orders.each do |order|
@@ -51,15 +51,15 @@
                 td
                   = order.payment_date.strftime("%F")
                 td
-                  = number_to_currency(order.quota_amount)
+                  = number_to_currency(order.orders_wares.sum(&:total))
                 td
                   = number_to_currency(order.total_paid)
                 td.text-center
                   = link_to 'Ver', order
                 td.text-center
                   = link_to 'Pagos', order_payments_path(order)
-                td.text-center
-                  = link_to 'Editar', edit_order_path(order)
+                / td.text-center
+                  / = link_to 'Editar', edit_order_path(order)
                 td.text-center
                   = link_to 'Eliminar', order, data: { confirm: 'Esta seguro de eliminar este registro?' }, method: :delete
 

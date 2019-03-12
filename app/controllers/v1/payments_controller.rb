@@ -14,8 +14,10 @@ module V1
       payment = Payment.new(payment_params)
       payment.date = Date.today
       payment.save
-      order = payment.order.update!(
-        payment_date: params[:payment_date]
+      order = payment.order
+      order.update!(
+        payment_date: params[:payment_date],
+        total_paid: order.total_paid + payment.total_paid
         # status: order.check_status
       )
       json_response(payment, :created)

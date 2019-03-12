@@ -10,7 +10,8 @@ class OrderSerializer < ActiveModel::Serializer
              :longitude,
              :payment_pending,
              :address,
-             :status
+             :status,
+             :total
 
   has_one :department
   has_one :city
@@ -28,6 +29,10 @@ class OrderSerializer < ActiveModel::Serializer
       object.neighborhood_address_one,
       # object.city.name.capitalize
     ].join(', ')
+  end
+
+  def total
+    object.orders_wares.sum(&:total)
   end
 
   def latitude
