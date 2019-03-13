@@ -16,6 +16,7 @@ module V1
     # POST /orders
     def create
       order = current_user.orders.new(order_params)
+      order.code = Order.all.length + 1
       order.save!
       json_response(order, :created)
     end
