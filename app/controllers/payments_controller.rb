@@ -5,7 +5,7 @@ class PaymentsController < ApplicationController
   # GET /payments
   # GET /payments.json
   def index
-    @payments = current_user.orders.find(params[:order_id]).payments
+    @payments = Order.find(params[:order_id]).payments
   end
 
   # GET /payments/1
