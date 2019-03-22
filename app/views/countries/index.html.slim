@@ -1,0 +1,33 @@
+.container-fluid
+  h1.h3.mb-2.text-gray-800
+    | Paises
+  .card.shadow.mb-4
+    .card-header.py-3
+      h6.m-0.font-weight-bold.text-primary
+        .pull-left
+          | Listado
+        .pull-right
+          a.btn.btn-primary.btn-icon-split[href=new_country_path]
+            span.icon.text-white-50
+              i.fa.fa-plus
+            span.text
+              | Crear País
+    .card-body
+      .table-responsive
+        table#dataTable.table.table-bordered[width="100%" cellspacing="0"]
+          thead
+            tr
+              th
+                | País
+              th.text-center[colspan="3"]
+          tbody
+            - @countries.each do |country|
+              tr
+                td.text-center
+                  = country.name.capitalize
+                td.text-center
+                  = link_to 'Ver', country
+                td.text-center
+                  = link_to 'Editar', edit_country_path(country)
+                td.text-center
+                  = link_to 'Eliminar', country, data: { confirm: 'Are you sure?' }, method: :delete

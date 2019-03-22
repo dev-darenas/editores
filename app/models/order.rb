@@ -4,6 +4,8 @@ class Order < ApplicationRecord
   belongs_to :city, required: false
 
   belongs_to :user, required: false
+  belongs_to :enterprise
+
   has_and_belongs_to_many :wares
 
   has_many :orders_wares
@@ -13,6 +15,7 @@ class Order < ApplicationRecord
 
   # attr_accessible :title, :assets_attributes
   accepts_nested_attributes_for :orders_wares, allow_destroy: true
+  accepts_nested_attributes_for :payments, allow_destroy: true
 
   validates :client_name, 
             :due_id,
@@ -30,14 +33,14 @@ class Order < ApplicationRecord
 
   # geocoded_by :address
 
-  reverse_geocoded_by :latitude, :longitude do |obj,results|
-    if geo = results.first
-      # obj.city    = geo.city
-      # obj.zipcode = geo.postal_code
-      # obj.country = geo.country_code
-    end
-  end
-  after_validation :reverse_geocode
+  # reverse_geocoded_by :latitude, :longitude do |obj,results|
+  #   if geo = results.first
+  #     # obj.city    = geo.city
+  #     # obj.zipcode = geo.postal_code
+  #     # obj.country = geo.country_code
+  #   end
+  # end
+  # after_validation :reverse_geocode
 
   # after_validation :geocode, :if => :address_changed?
   # before_validation :set_coords_to_nil, :if => :address_changed?

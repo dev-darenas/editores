@@ -7,7 +7,10 @@
             .form-group.row
               .col-sm-10.mb-3.mb-sm-0
               .col-sm-2.text-left
-                = f.input :code, label: 'Pedido', error: 'Username is mandatory, please specify one'
+                = f.input :code, label: 'Pedido', disabled: true
+            .form-group.row
+              .col-sm-4.mb-3.mb-sm-0.text-left
+                = f.association :enterprise
             .form-group.row
               .col-sm-2.mb-3.mb-sm-0.text-left
                 = f.association :country, label: 'Pais'
@@ -18,7 +21,7 @@
               .col-sm-4.mb-3.mb-sm-0.text-left
                 = f.input :date, as: :date, label: 'Fecha:'
             .form-group.row
-              .col-sm-8.mb-3.mb-sm-0.text-left
+              .col-sm-4.mb-3.mb-sm-0.text-left
                 = f.input :client_name, label: 'Nombre:'
               .col-sm-4.text-left
                 = f.input :client_phone, as: :tel, label: 'Tel:'

@@ -1,0 +1,24 @@
+.row
+  .col-lg-12
+    .p-2
+      .text-center
+        h1.h4.text-gray-900.mb-4
+          = simple_form_for @enterprise do |f|
+            = f.error_notification
+            = f.error_notification message: f.object.errors[:base].to_sentence if f.object.errors[:base].present?
+
+            .form-group.row
+              .col-sm-6.text-left
+                = f.association :country
+              .col-sm-6.text-left
+                = f.input :name
+            .form-group.row
+              .col-sm-12.text-left
+                = f.input :description
+
+            .pull-right.mt-5
+              = f.submit "Guardar", class: "btn btn-primary"
+            .pull-left.mt-5
+              a.btn.btn-primary.btn-icon-split.pull-left[href=enterprises_path]
+                span.text
+                  | Atrás

@@ -22,6 +22,9 @@ class User < ApplicationRecord
 
 
   has_many :orders, :dependent => :destroy
+  has_many :web_orders, :dependent => :destroy
+  has_many :api_orders, :dependent => :destroy
+
   has_many :wares, through: :orders
 
   has_many :payments, through: :orders

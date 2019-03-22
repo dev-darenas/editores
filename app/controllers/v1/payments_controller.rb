@@ -12,7 +12,7 @@ module V1
     # POST /payments
     def create
       payment = Payment.new(payment_params)
-      payment.date = Date.today
+      payment.date = params[:date]#Date.today
       payment.save
       order = payment.order
       order.update!(

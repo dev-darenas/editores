@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_03_11_162810) do
+ActiveRecord::Schema.define(version: 2019_03_21_194824) do
 
   create_table "activities", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.bigint "user_id"
@@ -50,6 +50,15 @@ ActiveRecord::Schema.define(version: 2019_03_11_162810) do
     t.decimal "interests", precision: 10
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+  end
+
+  create_table "enterprises", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+    t.string "name"
+    t.text "description"
+    t.bigint "country_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["country_id"], name: "index_enterprises_on_country_id"
   end
 
   create_table "inventory_transfers", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
@@ -107,10 +116,12 @@ ActiveRecord::Schema.define(version: 2019_03_11_162810) do
     t.integer "status", default: 0
     t.bigint "due_id"
     t.bigint "country_id"
+    t.bigint "enterprise_id"
     t.index ["city_id"], name: "index_orders_on_city_id"
     t.index ["country_id"], name: "index_orders_on_country_id"
     t.index ["department_id"], name: "index_orders_on_department_id"
     t.index ["due_id"], name: "index_orders_on_due_id"
+    t.index ["enterprise_id"], name: "index_orders_on_enterprise_id"
     t.index ["user_id"], name: "index_orders_on_user_id"
   end
 
@@ -185,6 +196,7 @@ ActiveRecord::Schema.define(version: 2019_03_11_162810) do
   add_foreign_key "activities", "users"
   add_foreign_key "cities", "departments"
   add_foreign_key "departments", "countries"
+  add_foreign_key "enterprises", "countries"
   add_foreign_key "inventory_transfers", "users", column: "recipient_id"
   add_foreign_key "inventory_transfers", "users", column: "sender_id"
   add_foreign_key "inventory_transfers", "wares"

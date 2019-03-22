@@ -12,7 +12,35 @@ ul#accordionSidebar.navbar-nav.bg-gradient-primary.sidebar.sidebar-dark.accordio
         | Dashboard
   hr.sidebar-divider
   .sidebar-heading
-    |  Admin 
+    |  Admin
+  li.nav-item
+    a.nav-link.collapsed[href="#" data-toggle="collapse" data-target="#collapseLocations" aria-expanded="true" aria-controls="collapseLocations"]
+      i.fa.fa-fw.fa-globe
+      span
+        | Ubicación
+    #collapseLocations.collapse[aria-labelledby="headingTwo" data-parent="#accordionSidebar"]
+      .bg-white.py-2.collapse-inner.rounded
+        h6.collapse-header
+          | Configurar
+        a.collapse-item[href=countries_path]
+          | Paises
+        a.collapse-item[href=departments_path]
+          | Departamentos
+        a.collapse-item[href=cities_path]
+          | Ciudades
+  li.nav-item
+    a.nav-link.collapsed[href="#" data-toggle="collapse" data-target="#collapseEnterprise" aria-expanded="true" aria-controls="collapseEnterprise"]
+      i.fa.fa-fw.fa-users
+      span
+        | Empresas
+    #collapseEnterprise.collapse[aria-labelledby="headingTwo" data-parent="#accordionSidebar"]
+      .bg-white.py-2.collapse-inner.rounded
+        h6.collapse-header
+          | Administrar empresas
+        a.collapse-item[href=enterprises_path]
+          | Listar
+        a.collapse-item[href=new_enterprise_path]
+          | Crear
   li.nav-item
     a.nav-link.collapsed[href="#" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="true" aria-controls="collapseTwo"]
       i.fa.fa-fw.fa-users

@@ -1,0 +1,25 @@
+.container-fluid
+  h1.h3.mb-2.text-gray-800
+    | País
+  .card.shadow.mb-4
+    .card-header.py-3
+      h6.m-0.font-weight-bold.text-primary
+        .pull-left
+          | Detalles
+    .card-body
+      p#notice = notice
+      .row
+        .col-lg-12
+          .card.mb-1.py-1.border-left-primary
+            .card-body
+              strong Nombre:&nbsp
+              = @country.name
+
+      .pull-right.mt-5
+        a.btn.btn-primary.btn-icon-split.pull-left[href=edit_country_path(@country)]
+          span.text
+            | Editar
+      .pull-left.mt-5
+        a.btn.btn-primary.btn-icon-split.pull-left[href=countries_path]
+          span.text
+            | Atrás

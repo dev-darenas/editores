@@ -9,15 +9,26 @@ class OrderSerializer < ActiveModel::Serializer
              :latitude,
              :longitude,
              :payment_pending,
-             :address,
+             # :address,
              :status,
-             :total
+             :address_one,
+             :neighborhood_address_one,
+             :date,
+             :due_id,
+             :familiar_reference,
+             :familiar_reference_phone,
+             :payment_date,
+             :personal_reference,
+             :personal_reference_phone,
+             :quota_amount,
+             :quota_quantity,
+             :orders_wares_attributes
 
-  has_one :department
-  has_one :city
-  has_one :user
+  # has_one :department
+  # has_one :city
+  # has_one :user
 
-  has_many :payments
+  # has_many :payments
 
   def payment_pending
     number_to_currency(object.quota_amount)
@@ -41,5 +52,9 @@ class OrderSerializer < ActiveModel::Serializer
 
   def longitude
     object.longitude.to_f
+  end
+
+  def orders_wares_attributes
+    object.orders_wares
   end
 end

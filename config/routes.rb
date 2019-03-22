@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
   
+  resources :enterprises
   resources :activities
   resources :dues
   resources :payments, only: [:create, :update, :destroy]
@@ -9,9 +10,12 @@ Rails.application.routes.draw do
 
   resources :inventory_transfers
   resources :load_wares
+  resources :countries
+  resources :departments
+  resources :cities
   resources :orders_wares
   devise_for :users
-  root to: 'page#index'
+  root to: 'dashboard#index'
 
   scope :admin do
     resources :users
@@ -31,6 +35,7 @@ Rails.application.routes.draw do
       end
       resources :wares, only: :index
       resources :countries, only: :index
+      resources :enterprises, only: :index
       resources :dues, only: :index
       get 'coordinates', to: 'orders#coordinates'
     end

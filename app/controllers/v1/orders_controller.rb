@@ -4,7 +4,8 @@ module V1
 
     # GET /orders
     def index
-      orders = current_user.orders.where(payment_date: Date.today)
+      orders = current_user.api_orders.near([params[:latitude], params[:longitude]]).where(payment_date: Date.today, status: :pending)
+      # orders = current_user.orders.where(payment_date: Date.today)
       json_response(orders)
     end
 
@@ -15,7 +16,7 @@ module V1
 
     # POST /orders
     def create
-      order = current_user.orders.new(order_params)
+      order = current_user.api_orders.new(order_params)
       order.code = Order.all.length + 1
       order.save!
       json_response(order, :created)
@@ -39,7 +40,7 @@ module V1
     end
 
     def coordinates
-      orders = current_user.orders.where(payment_date: Date.today, status: :pending).near([params[:latitude], params[:longitude]]).
+      orders = current_user.api_orders.where(payment_date: Date.today, status: :pending).near([params[:latitude], params[:longitude]]).
       map { |e| {latitude: e.latitude.to_f, longitude: e.longitude.to_f} }
 
       json_response(orders)
@@ -54,6 +55,7 @@ module V1
     def order_params
       params.require(:order).permit(
         :code,
+        :enterprise_id,
         :country_id,
         :department_id,
         :city_id,
@@ -84,6 +86,13 @@ module V1
           :quantity,
           :total,
           :observations
+        ],
+        payments_attributes: [
+          :total_paid,
+          :observations,
+          :date,
+          :latitude,
+          :longitude
         ]
       )
     end

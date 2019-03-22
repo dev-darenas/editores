@@ -15,6 +15,7 @@ class OrdersController < ApplicationController
   # GET /orders/new
   def new
     @order = Order.new
+    @order.code = Order.all.length + 1
     @order.orders_wares.build
   end
 
@@ -27,11 +28,11 @@ class OrdersController < ApplicationController
   # POST /orders
   # POST /orders.json
   def create
-    @order = current_user.orders.new(order_params)
-
+    @order = current_user.web_orders.new(order_params)
+    @order.code = Order.all.length + 1
     respond_to do |format|
       if @order.save
-        format.html { redirect_to @order, notice: 'Order was successfully created.' }
+        format.html { redirect_to order_path(@order.id), notice: 'Order was successfully created.' }
         format.json { render :show, status: :created, location: @order }
       else
         format.html { render :new }
@@ -78,7 +79,9 @@ class OrdersController < ApplicationController
     def order_params
       params.require(:order).permit(
         :code,
+        :enterprise_id,
         :due_id,
+        :country_id,
         :department_id,
         :city_id,
         :date,

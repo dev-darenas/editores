@@ -1,0 +1,42 @@
+.container-fluid
+  h1.h3.mb-2.text-gray-800
+    | Ciudades
+  .card.shadow.mb-4
+    .card-header.py-3
+      h6.m-0.font-weight-bold.text-primary
+        .pull-left
+          | Listado
+        .pull-right
+          a.btn.btn-primary.btn-icon-split[href=new_city_path]
+            span.icon.text-white-50
+              i.fa.fa-plus
+            span.text
+              | Crear Ciudad
+    .card-body
+      .table-responsive
+        table#dataTable.table.table-bordered[width="100%" cellspacing="0"]
+          thead
+            tr
+              th
+                | País
+              th
+                | Departamento
+              th
+                | Ciudad
+              th.text-center[colspan="3"]
+          tbody
+            - @cities.each do |city|
+              tr
+                td.text-center
+                  = city.department.country.name
+                td.text-center
+                  = city.department.name
+                td.text-center
+                  = city.name
+                td.text-center
+                  = link_to 'Ver', city
+                td.text-center
+                  = link_to 'Editar', edit_city_path(city)
+                td.text-center
+                  = link_to 'Eliminar', city, data: { confirm: 'Are you sure?' }, method: :delete
+
