@@ -1,9 +1,12 @@
 class OrderSerializer < ActiveModel::Serializer
   include ActionView::Helpers::NumberHelper
 
+  has_many :payments
+
   attributes :id,
              :code,
              :client_name,
+             :enterprise_id,
              :client_phone,
              :quota_amount,
              :latitude,
@@ -22,13 +25,12 @@ class OrderSerializer < ActiveModel::Serializer
              :personal_reference_phone,
              :quota_amount,
              :quota_quantity,
-             :orders_wares_attributes
+             :orders_wares_attributes,
 
   # has_one :department
   # has_one :city
   # has_one :user
 
-  # has_many :payments
 
   def payment_pending
     number_to_currency(object.quota_amount)

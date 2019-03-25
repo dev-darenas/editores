@@ -32,7 +32,12 @@ class ApiController < ActionController::API
   def get_current_configuration
     user = User.find_by_email(params[:email]) || @current_user
     {
-      role:       user.roles.first.name
+      role:         user.roles.first.name,
+      current_user: ActiveModelSerializers::SerializableResource.new(user, serializer: UserSerializer).as_json,
+      countries:    ActiveModelSerializers::SerializableResource.new(Country.all, each_serializer: CountrySerializer).as_json,
+      products:     ActiveModelSerializers::SerializableResource.new(Ware.all, each_serializer: WareSerializer).as_json,
+      dues:         ActiveModelSerializers::SerializableResource.new(Due.all, each_serializer: DueSerializer).as_json,
+      enterprises:  ActiveModelSerializers::SerializableResource.new(Enterprise.all, each_serializer: EnterpriseSerializer).as_json
     }
   end
 end

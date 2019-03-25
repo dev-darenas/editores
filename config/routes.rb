@@ -36,6 +36,7 @@ Rails.application.routes.draw do
       resources :wares, only: :index
       resources :countries, only: :index
       resources :enterprises, only: :index
+      resources :dashboard, only: :index
       resources :dues, only: :index
       get 'coordinates', to: 'orders#coordinates'
     end

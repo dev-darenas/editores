@@ -3,11 +3,11 @@ class DashboardController < ApplicationController
     today = Date.today
     first_date = today.beginning_of_month
     last_date = today.end_of_month
-    @budget_month = Order.where(status: :pending, date: first_date..last_date).map { |o| o.orders_wares.sum(&:total) }.inject(0){|sum,x| sum + x }
-    @budget_today = Order.where(status: :pending, date: today).map { |o| o.orders_wares.sum(&:total) }.inject(0){|sum,x| sum + x }
+    @budget_month = Order.where(status: :pending, payment_date: first_date..last_date).sum(&:quota_amount)
+    @budget_today = Order.where(status: :pending, date: today).sum(&:quota_amount)
 
-    @incomes_month = Order.where(status: :pending, date: first_date..last_date).sum(&:total_paid)
-    @incomes_today = Order.where(status: :pending, date: today).sum(&:total_paid)
+    @incomes_month = Order.all.map { |o| o.payments.where(date: first_date..last_date).sum(&:total_paid) }.inject(0){|sum,x| sum + x }
+    @incomes_today = Order.all.map { |o| o.payments.where(date: today).sum(&:total_paid) }.inject(0){|sum,x| sum + x }
 
 
     budget_month_data = Order.where(status: :pending)
@@ -21,7 +21,7 @@ class DashboardController < ApplicationController
             label: "Presupuestado",
             backgroundColor: "rgba(220,220,220,0.2)",
             borderColor: "blue",
-            data: budget_month_data.map{ |obj| obj[1].map { |o| o.orders_wares.sum(&:total).to_f }}.map { |e| e.inject(0){|sum,x| sum + x }}
+            data: budget_month_data.map{ |obj| obj[1].sum(&:quota_amount)}#.map { |o| o.orders_wares.sum(&:total).to_f }}.map { |e| e.inject(0){|sum,x| sum + x }}
         },
         {
             label: "Real",

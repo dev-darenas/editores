@@ -4,7 +4,7 @@ module V1
 
     # GET /orders
     def index
-      orders = current_user.api_orders.near([params[:latitude], params[:longitude]]).where(payment_date: Date.today, status: :pending)
+      orders = current_user.api_orders.near([params[:latitude], params[:longitude]]).where(payment_date: Date.today)
       # orders = current_user.orders.where(payment_date: Date.today)
       json_response(orders)
     end
@@ -29,7 +29,7 @@ module V1
 
     # PUT /orders/:id
     def update
-      @order.update(order_params)
+      @order.update_attributes(status: params[:status])
       json_response(@order, :ok)
     end
 
