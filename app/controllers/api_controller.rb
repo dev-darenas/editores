@@ -37,7 +37,8 @@ class ApiController < ActionController::API
       countries:    ActiveModelSerializers::SerializableResource.new(Country.all, each_serializer: CountrySerializer).as_json,
       products:     ActiveModelSerializers::SerializableResource.new(Ware.all, each_serializer: WareSerializer).as_json,
       dues:         ActiveModelSerializers::SerializableResource.new(Due.all, each_serializer: DueSerializer).as_json,
-      enterprises:  ActiveModelSerializers::SerializableResource.new(Enterprise.all, each_serializer: EnterpriseSerializer).as_json
+      enterprises:  ActiveModelSerializers::SerializableResource.new(Enterprise.all, each_serializer: EnterpriseSerializer).as_json,
+      assesors:     ActiveModelSerializers::SerializableResource.new(User.all, each_serializer: UserSerializer).as_json,
       collectors:   ActiveModelSerializers::SerializableResource.new(User.with_role(:collector), each_serializer: UserSerializer).as_json
     }
   end

@@ -21,9 +21,9 @@ class User < ApplicationRecord
             :foreign_key  => "received_id"
 
 
-  has_many  :collectors,
-            :class_name => "Order",
-            :foreign_key  => "collector_id"
+  # has_many  :collectors,
+  #           :class_name => "Order",
+  #           :foreign_key  => "collector_id"
 
   has_many :orders, :dependent => :destroy
   has_many :web_orders, :dependent => :destroy

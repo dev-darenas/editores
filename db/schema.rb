@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_03_21_194824) do
+ActiveRecord::Schema.define(version: 2019_03_26_134555) do
 
   create_table "activities", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.bigint "user_id"
@@ -117,7 +117,9 @@ ActiveRecord::Schema.define(version: 2019_03_21_194824) do
     t.bigint "due_id"
     t.bigint "country_id"
     t.bigint "enterprise_id"
+    t.bigint "collector_id"
     t.index ["city_id"], name: "index_orders_on_city_id"
+    t.index ["collector_id"], name: "index_orders_on_collector_id"
     t.index ["country_id"], name: "index_orders_on_country_id"
     t.index ["department_id"], name: "index_orders_on_department_id"
     t.index ["due_id"], name: "index_orders_on_due_id"
@@ -204,6 +206,7 @@ ActiveRecord::Schema.define(version: 2019_03_21_194824) do
   add_foreign_key "load_wares", "wares"
   add_foreign_key "orders", "cities"
   add_foreign_key "orders", "departments"
+  add_foreign_key "orders", "users", column: "collector_id"
   add_foreign_key "orders_wares", "orders"
   add_foreign_key "orders_wares", "wares"
   add_foreign_key "payments", "orders"

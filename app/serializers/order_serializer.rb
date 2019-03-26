@@ -6,6 +6,8 @@ class OrderSerializer < ActiveModel::Serializer
   attributes :id,
              :code,
              :client_name,
+             :user_id,
+             :collector_id,
              :enterprise_id,
              :client_phone,
              :quota_amount,

@@ -16,7 +16,8 @@ module V1
 
     # POST /orders
     def create
-      order = current_user.api_orders.new(order_params)
+      # order = current_user.api_orders.new(order_params)
+      order = ApiOrder.new(order_params)
       order.code = Order.all.length + 1
       order.save!
       json_response(order, :created)
@@ -57,6 +58,8 @@ module V1
         :code,
         :enterprise_id,
         :country_id,
+        :collector_id,
+        :user_id,
         :department_id,
         :city_id,
         :date,
