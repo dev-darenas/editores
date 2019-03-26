@@ -64,9 +64,10 @@
                 = f.input :payment_date, as: :date, label: 'A partir del:'
 
             .form-group.row
-              .col-sm-4.mb-3.mb-sm-0.text-left
-              .col-sm-4.text-left
-                = f.association :user, label: 'Asesor Responsable:', label_method: :full_name
+              .col-sm-6.text-left
+                = f.association :user, label: 'Asesor Responsable:', label_method: :full_name, required: true
+              .col-sm-6.text-left
+                = f.association :collector, label: 'Cobrador:', label_method: :full_name
 
             .form-group.row
 

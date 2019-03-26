@@ -28,14 +28,14 @@ class OrdersController < ApplicationController
   # POST /orders
   # POST /orders.json
   def create
-    @order = current_user.web_orders.new(order_params)
+    @order = WebOrder.new(order_params)
     @order.code = Order.all.length + 1
     respond_to do |format|
       if @order.save
         format.html { redirect_to order_path(@order.id), notice: 'Order was successfully created.' }
         format.json { render :show, status: :created, location: @order }
       else
-        format.html { render :new }
+        format.html { redirect_to new_order_path }
         format.json { render json: @order.errors, status: :unprocessable_entity }
       end
     end
@@ -82,6 +82,8 @@ class OrdersController < ApplicationController
         :enterprise_id,
         :due_id,
         :country_id,
+        :user_id,
+        :collector_id,
         :department_id,
         :city_id,
         :date,
