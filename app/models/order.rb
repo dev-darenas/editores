@@ -4,6 +4,10 @@ class Order < ApplicationRecord
   belongs_to :city, required: false
 
   belongs_to :user, required: false
+
+  # belongs_to :collector, required: false
+  belongs_to :collector, :class_name => 'User', :foreign_key => 'collector_id'
+
   belongs_to :enterprise
 
   has_and_belongs_to_many :wares

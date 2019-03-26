@@ -12,14 +12,18 @@ class User < ApplicationRecord
             presence: true
 
 
-  has_many  :sent, 
+  has_many  :sent,
             :class_name => "Ware",
             :foreign_key  => "sent_id"
 
-  has_many  :received, 
+  has_many  :received,
             :class_name => "Ware", 
             :foreign_key  => "received_id"
 
+
+  has_many  :collectors,
+            :class_name => "Order",
+            :foreign_key  => "collector_id"
 
   has_many :orders, :dependent => :destroy
   has_many :web_orders, :dependent => :destroy
