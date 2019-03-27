@@ -15,7 +15,6 @@ class OrdersController < ApplicationController
   # GET /orders/new
   def new
     @order = Order.new
-    @order.code = Order.all.length + 1
     @order.orders_wares.build
   end
 
@@ -29,7 +28,6 @@ class OrdersController < ApplicationController
   # POST /orders.json
   def create
     @order = WebOrder.new(order_params)
-    @order.code = Order.all.length + 1
     respond_to do |format|
       if @order.save
         format.html { redirect_to order_path(@order.id), notice: 'Order was successfully created.' }
