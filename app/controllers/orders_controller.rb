@@ -44,6 +44,10 @@ class OrdersController < ApplicationController
   def update
     respond_to do |format|
       if @order.update(order_params)
+        params[:order][:orders_wares_attributes].each do | item |
+          product = OrdersWare.find(item[1][:id])
+          product.update_attributes(quantity: item[1][:quantity], total: item[1][:total], observations: item[1][:observations])
+        end
         format.html { redirect_to @order, notice: 'Order was successfully updated.' }
         format.json { render :show, status: :ok, location: @order }
       else

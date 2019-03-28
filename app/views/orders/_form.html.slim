@@ -107,7 +107,7 @@
                                 i.fa.fa-trash
                             -#= link_to 'Remove', orders_ware_path(@order, wares_form.object), :method => :delete, :remote => true, :class => 'destroy_duplicate_nested_form'
 
-                      = wares_form.input :id, as: :hidden
+                        = wares_form.input :id, as: :hidden
 
             .pull-right.mt-5
               = f.submit "Guardar", class: "btn btn-primary"
