@@ -1,10 +1,12 @@
 class OrdersController < ApplicationController
   before_action :set_order, only: [:show, :edit, :update, :destroy]
+  helper_method :sort_column, :sort_direction
 
   # GET /orders
   # GET /orders.json
   def index
-    @orders = Order.all
+    @q = Order.ransack(params[:q])
+    @orders = @q.result(distinct: true)
   end
 
   # GET /orders/1

@@ -13,14 +13,25 @@
             span.text
               | Crear Pedido
     .card-body
+      = search_form_for @q do |f|
+        = f.label :client_name_cont
+        = f.search_field :client_name_cont
+        br
+        = f.label :code_eq
+        = f.search_field :code_eq
+        br
+        = f.submit
+
+      = link_to "Limpiar filtro", orders_path
+
       .table-responsive
         table#dataTable.table.table-bordered[width="100%" cellspacing="0"]
           thead
             tr
               th.text-center
-                | Pedido
+                = sort_link(@q, :code)
               th
-                | Nombre
+                = sort_link @q, :client_name
               th
                 | Ciudad
               th
