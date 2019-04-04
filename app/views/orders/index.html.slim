@@ -39,6 +39,10 @@
               th
                 | Barrio
               th
+                | Vendedor
+              th
+                | Cobrador
+              th
                 | Fecha Pago
               th
                 | Total
@@ -59,6 +63,10 @@
                   = order.address_one
                 td
                   = order.neighborhood_address_one
+                td
+                  = order&.user&.full_name
+                td
+                  = order&.collector&.full_name
                 td
                   = order.payment_date.strftime("%F")
                 td
