@@ -4,9 +4,6 @@ module V1
 
     # GET /orders
     def index
-      p "@@@@@@@@@@@@@@@@@@"
-      p current_user.has_role? :collector
-      p "@@@@@@@@@@@@@@@@@@"
       if current_user.has_role? :collector
         orders = ApiOrder.where(collector_id: current_user.id, payment_date: Date.today)
       else
