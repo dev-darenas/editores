@@ -28,6 +28,7 @@ class OrderSerializer < ActiveModel::Serializer
              :quota_amount,
              :quota_quantity,
              :orders_wares_attributes,
+             :balance
 
   # has_one :department
   # has_one :city
@@ -48,6 +49,10 @@ class OrderSerializer < ActiveModel::Serializer
 
   def total
     object.orders_wares.sum(&:total)
+  end
+
+  def balance
+    object.orders_wares.sum(&:total) - object.payments.sum(&:total_paid)
   end
 
   def latitude
