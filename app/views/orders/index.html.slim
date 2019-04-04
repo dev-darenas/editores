@@ -5,25 +5,22 @@
     .card-header.py-3
       h6.m-0.font-weight-bold.text-primary
         .pull-left
-          | Listado
+          = search_form_for @q, html: { class: 'simple_form' } do |f|
+            .form-group
+              = f.label 'Buscar'
+              = f.search_field :client_name_or_code_or_collector_firstname_or_user_firstname_cont, class: 'form-control'
+
+            = f.submit 'Buscar', class: 'btn btn-primary'
+            | &nbsp;&nbsp;
+            = link_to "Limpiar filtro", orders_path, class: 'btn btn-primary'
         .pull-right
           a.btn.btn-primary.btn-icon-split[href=new_order_path]
             span.icon.text-white-50
               i.fa.fa-plus
             span.text
               | Crear Pedido
+
     .card-body
-      = search_form_for @q do |f|
-        = f.label :client_name_cont
-        = f.search_field :client_name_cont
-        br
-        = f.label :code_eq
-        = f.search_field :code_eq
-        br
-        = f.submit
-
-      = link_to "Limpiar filtro", orders_path
-
       .table-responsive
         table#dataTable.table.table-bordered[width="100%" cellspacing="0"]
           thead
@@ -43,7 +40,7 @@
               th
                 | Cobrador
               th
-                | Fecha Pago
+                = sort_link(@q, :payment_date)
               th
                 | Total
               th
@@ -82,3 +79,6 @@
                 td.text-center
                   = link_to 'Eliminar', order, data: { confirm: 'Esta seguro de eliminar este registro?' }, method: :delete
 
+      
+      
+      = will_paginate @orders, class: 'digg_pagination'
