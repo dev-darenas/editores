@@ -53,6 +53,8 @@ class OrderSerializer < ActiveModel::Serializer
 
   def balance
     object.orders_wares.sum(&:total) - object.payments.sum(&:total_paid)
+  rescue
+    0
   end
 
   def latitude
