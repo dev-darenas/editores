@@ -22,7 +22,7 @@ class OrdersController < ApplicationController
 
   # GET /orders/1/edit
   def edit
-    @order = current_user.orders.find params[:id]
+    @order = Order.find params[:id]
     @order.orders_wares
   end
 
