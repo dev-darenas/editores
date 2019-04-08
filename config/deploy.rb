@@ -2,7 +2,7 @@
 lock "~> 3.11.0"
 
 # Change these
-server '159.65.76.213', port: 8080, roles: [:web, :app, :db], primary: true
+server '159.65.76.213', port: 22, roles: [:web, :app, :db], primary: true
 
 set :repo_url,        'https://github.com/dev-darenas/editores.git'
 set :application,     'editores'
