@@ -69,7 +69,7 @@ gem 'chartjs-ror', '3.6.4'
 
 gem 'ransack'
 
-gem 'therubyracer', :platforms => :ruby
+gem 'mini_racer'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
