@@ -41,11 +41,11 @@
 #
 # Global options
 # --------------
-  set :ssh_options, {
-    user: "root",
-    keys: %w(/Users/danielarenas/.ssh/id_rsa),
-    forward_agent: false
-  }
+#  set :ssh_options, {
+#    user: "root",
+#    keys: %w(/Users/danielarenas/.ssh/id_rsa),
+#    forward_agent: true
+#  }
 #
 # The server-based syntax can be used to override options:
 # ------------------------------------
