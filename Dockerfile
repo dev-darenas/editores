@@ -22,5 +22,3 @@ RUN gem install bundler \
   && bundle install
 
 COPY . /usr/src/editores
-
-CMD bundle exec rake assets:precompile
