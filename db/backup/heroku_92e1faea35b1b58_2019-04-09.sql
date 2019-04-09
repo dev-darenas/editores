@@ -7,7 +7,7 @@
 #
 # Host: us-cdbr-iron-east-03.cleardb.net (MySQL 5.5.56-log)
 # Database: heroku_92e1faea35b1b58
-# Generation Time: 2019-04-09 16:46:25 +0000
+# Generation Time: 2019-04-09 17:53:04 +0000
 # ************************************************************
 
 
@@ -1008,7 +1008,9 @@ VALUES
 	(4822,'714',202,72,'2019-04-09','Livia marliths','0994343522','00','00','Calle chibchas av incas','Cooperativo vercereno','0','0','Ana garces','3708483','Maria garces','3700718','2019-04-16','X calle incas voltea ala derecha xcalle chibchas 6 casa color rojo rejas blancas 3 pisos',7,20.00,0.00,-0.266907,-79.187728,'2019-04-09 16:17:53','2019-04-09 16:17:53',22,0,4,12,12,32),
 	(4832,'2014 ',132,252,'2019-04-09','Lizeth vera ','0991445705',NULL,NULL,'Abelardo torrez ','Nueve de octubre',NULL,NULL,'Ines morales ','022172020','Edith silva ','0993168312','2019-04-20','Casa color crema al lado de casa curuba frente foto Moreira diagonal a la tienda ',7,20.00,0.00,-0.146392,-79.392261,'2019-04-09 16:28:38','2019-04-09 16:28:38',122,0,4,12,12,232),
 	(4842,'2015',132,252,'2019-04-09','Maritza delgado ','0982413050',NULL,NULL,'Calle viciente roca fuerte abelardo','9 de octubre',NULL,NULL,'Cesar abel ','0993723780','Génesis delgado ','0982413030','2019-05-03','Casa esquinera x el callejón al fondo d la carretera obra gris ',14,10.00,0.00,-0.146008,-79.392489,'2019-04-09 16:33:18','2019-04-09 16:33:18',62,0,3,12,12,232),
-	(4852,'2016',132,252,'2019-04-09','Leticia mejia ','0990363302',NULL,NULL,'Calle 24 de mayo ','9 de octubre ',NULL,NULL,'Jean Pierre Estupiñán','022172380','Walter estupiñan ','0960964070','2019-04-30','Casa esquinera color verde manzana con azul celeste diagonal al centro d salud San Jacinto bajando x el callejón ',7,20.00,0.00,-0.147040,-79.391540,'2019-04-09 16:43:42','2019-04-09 16:43:42',162,0,4,12,12,232);
+	(4852,'2016',132,252,'2019-04-09','Leticia mejia ','0990363302',NULL,NULL,'Calle 24 de mayo ','9 de octubre ',NULL,NULL,'Jean Pierre Estupiñán','022172380','Walter estupiñan ','0960964070','2019-04-30','Casa esquinera color verde manzana con azul celeste diagonal al centro d salud San Jacinto bajando x el callejón ',7,20.00,0.00,-0.147040,-79.391540,'2019-04-09 16:43:42','2019-04-09 16:43:42',162,0,4,12,12,232),
+	(4862,'715',202,72,'2019-04-09','Rosario saltos','0968655830',NULL,NULL,'Coop sta martha ','Construccion para el pueblo ',NULL,NULL,'Mercedes saltos ','3705567','Wilson saltos ','3705608','2019-04-28',' Calle de los incas con Calle de los esquimales casa color azul verdoso con reja y porton de lata frente a casa de color aguamarina',7,20.00,0.00,-0.268153,-79.190188,'2019-04-09 17:16:28','2019-04-09 17:16:28',22,0,4,12,12,32),
+	(4872,'2025',202,72,'2019-04-09','José arteaga','0989252099',NULL,NULL,'Entrada al portal del lago','Entrada al portal del lago',NULL,NULL,'Marcos Marín ','0985735895','Andrea paredes','0969523371','2019-04-30','Vende guanábanas en la entrada del barrio ',7,20.00,0.00,-0.252815,-79.135849,'2019-04-09 17:28:45','2019-04-09 17:28:45',192,0,4,12,12,32);
 
 /*!40000 ALTER TABLE `orders` ENABLE KEYS */;
 UNLOCK TABLES;
@@ -1503,7 +1505,9 @@ VALUES
 	(4812,4822,2,1,140.00,NULL,'2019-04-09 16:17:53','2019-04-09 16:17:53'),
 	(4822,4832,2,1,140.00,NULL,'2019-04-09 16:28:38','2019-04-09 16:28:38'),
 	(4832,4842,2,1,140.00,NULL,'2019-04-09 16:33:18','2019-04-09 16:33:18'),
-	(4842,4852,2,1,140.00,NULL,'2019-04-09 16:43:42','2019-04-09 16:43:42');
+	(4842,4852,2,1,140.00,NULL,'2019-04-09 16:43:42','2019-04-09 16:43:42'),
+	(4852,4862,2,1,140.00,NULL,'2019-04-09 17:16:28','2019-04-09 17:16:28'),
+	(4862,4872,2,2,280.00,NULL,'2019-04-09 17:28:45','2019-04-09 17:28:45');
 
 /*!40000 ALTER TABLE `orders_wares` ENABLE KEYS */;
 UNLOCK TABLES;
