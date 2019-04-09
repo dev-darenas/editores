@@ -7,7 +7,9 @@ RUN apt-get update && \
                        mysql-client \
                        --no-install-recommends && \
     rm -rf /var/lib/apt/lists/*
-    
+
+RUN curl -sL https://deb.nodesource.com/setup_10.x | bash - \
+        && apt-get install -y nodejs    
 
 RUN mkdir /usr/src/editores
 WORKDIR /usr/src/editores
