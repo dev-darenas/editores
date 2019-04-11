@@ -9,6 +9,9 @@ class Payment < ApplicationRecord
   reverse_geocoded_by :latitude, :longitude
   # after_validation :reverse_geocode
 
+  enum kind: [:regular, :initial]
+
+
 
   def row_status
     case status

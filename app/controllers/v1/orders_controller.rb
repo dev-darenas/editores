@@ -25,6 +25,16 @@ module V1
       # order = current_user.api_orders.new(order_params)
       order = ApiOrder.new(order_params)
       order.save!
+      if params[:has_initial_payment]
+        order.payments.create(
+          total_paid: params[:initial_amount],
+          date: params[:order][:date],
+          kind: :initial,
+          observations: 'Cuota Inicial',
+          latitude: params[:order][:latitude],
+          longitude: params[:order][:longitude]
+        )
+      end
       json_response(order, :created)
     end
 
@@ -43,6 +53,14 @@ module V1
     def destroy
       # @account.destroy
       # json_response(@account)
+    end
+
+    def search
+      orders = []
+      if params[:query].present?
+        orders = Order.where("code LIKE ?", "%#{params[:query]}%")
+      end
+      json_response(orders)
     end
 
     def coordinates

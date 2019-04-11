@@ -1,7 +1,7 @@
 class PaymentSerializer < ActiveModel::Serializer
   include ActionView::Helpers::NumberHelper
 
-  attributes :id, :order_id, :total_paid, :date, :status, :observations
+  attributes :id, :order_id, :total_paid, :date, :kind, :observations
   has_one :order
 
   def total_paid
