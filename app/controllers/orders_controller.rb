@@ -73,6 +73,20 @@ class OrdersController < ApplicationController
   #   @payments = current_user.orders.find(params[:order_id]).payments
   # end
 
+  def transfer
+    @error_codes = ""
+    @success_codes = nil
+    if params[:transfer]
+      params[:transfer][:codes].tr(' ', '').split(",").each do |code|
+        order = Order.find_by(code: code)
+        @error_codes = code + ", " if order.nil?
+        order.update(collector_id: params[:transfer][:user]) if order
+      end
+
+      @success_codes = "Ordenes actualizadas"
+    end
+  end
+
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_order

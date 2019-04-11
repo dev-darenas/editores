@@ -6,6 +6,9 @@ Rails.application.routes.draw do
   resources :payments, only: [:create, :update, :destroy]
   resources :orders do
     resources :payments
+    collection do
+      get :transfer
+    end
   end
 
   resources :inventory_transfers

@@ -1,0 +1,26 @@
+.container-fluid
+  h1.h3.mb-2.text-gray-800
+    | Tranferir Pedidos
+  .card.shadow.mb-4
+    .card-header.py-3
+      h6.m-0.font-weight-bold.text-primary
+    .card-body
+      - if @success_codes
+        .alert.alert-success role="alert"
+          = @success_codes
+
+      = form_tag("/orders/transfer", method: "get") do
+        .form-group.select
+          label.form-control-label Nuevo cobrador
+          = select(:transfer, :user, User.all.collect {|p| [ p.full_name, p.id ] }, { include_blank: true }, {class: 'form-control'})
+        .form-group
+          label.form-control-label Codigos
+          = text_field(:transfer, :codes, class: 'form-control string')
+        = submit_tag "Transferir", class: "btn btn-primary"
+
+      - if @error_codes != ""
+        .alert.alert-warning role="alert"
+          h5 Codigo con problemas
+          = @error_codes
+
+

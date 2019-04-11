@@ -36,4 +36,8 @@ class User < ApplicationRecord
   def full_name
     "#{firstname} #{lastname}"
   end
+
+  def active_for_authentication?      
+    super && roles.first.name == "admin"
+  end
 end
