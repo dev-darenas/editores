@@ -14,7 +14,8 @@ class OrderSerializer < ActiveModel::Serializer
              :latitude,
              :longitude,
              :payment_pending,
-             # :address,
+             :observations,
+             :address,
              :status,
              :address_one,
              :neighborhood_address_one,
@@ -53,6 +54,8 @@ class OrderSerializer < ActiveModel::Serializer
 
   def balance
     object.orders_wares.sum(&:total) - object.payments.sum(&:total_paid)
+  rescue
+    0
   end
 
   def latitude

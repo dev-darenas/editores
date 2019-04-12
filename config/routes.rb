@@ -42,6 +42,7 @@ Rails.application.routes.draw do
       resources :dashboard, only: :index
       resources :dues, only: :index
       get 'coordinates', to: 'orders#coordinates'
+      get 'search', to: 'orders#search'
     end
   end
 end
