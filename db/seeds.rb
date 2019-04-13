@@ -72,21 +72,26 @@ countries = [
 
 ]
 
-City.delete_all
-Department.delete_all
-Country.delete_all
-ActiveRecord::Base.connection.execute("SET FOREIGN_KEY_CHECKS = 0")
-ActiveRecord::Base.connection.execute("TRUNCATE cities")
-ActiveRecord::Base.connection.execute("TRUNCATE departments")
-ActiveRecord::Base.connection.execute("TRUNCATE countries")
-ActiveRecord::Base.connection.execute("SET FOREIGN_KEY_CHECKS = 1")
-p "################# creating countries, departments and cities #################"
-countries.each_with_index do |country, c_index|
-  c = Country.create(id: (c_index+1), name: country[:country][:name])
-  country[:country][:departments].each_with_index do |department, d_index|
-    dpto = c.departments.create(id: d_index+1, name: department[:name])
-    department[:cities].each do |city|
-      dpto.cities.create(name: city)
+if false
+  City.delete_all
+  Department.delete_all
+  Country.delete_all
+  ActiveRecord::Base.connection.execute("SET FOREIGN_KEY_CHECKS = 0")
+  ActiveRecord::Base.connection.execute("TRUNCATE cities")
+  ActiveRecord::Base.connection.execute("TRUNCATE departments")
+  ActiveRecord::Base.connection.execute("TRUNCATE countries")
+  ActiveRecord::Base.connection.execute("SET FOREIGN_KEY_CHECKS = 1")
+  p "################# creating countries, departments and cities #################"
+
+# TODO: get error => Duplicate entry '1' for key 'PRIMARY': INSERT INTO `departments` (`id`, `country_id`, `name`, `created_at`, `updated_at`) VALUES (1, 2, 'santo domingo tsachilas', '2019-04-09 15:33:13', '2019-04-09 15:33:13')
+
+  countries.each_with_index do |country, c_index|
+    c = Country.create(id: (c_index+1), name: country[:country][:name])
+    country[:country][:departments].each_with_index do |department, d_index|
+      dpto = c.departments.create(id: d_index+1, name: department[:name])
+      department[:cities].each do |city|
+        dpto.cities.create(name: city)
+      end
     end
   end
 end

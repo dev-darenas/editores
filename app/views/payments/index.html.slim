@@ -40,6 +40,16 @@
                   = link_to 'Editar', edit_order_payment_path(@order, payment)
                 td.text-center
                   = link_to 'Eliminar', order_payment_path(@order, payment), data: { confirm: 'Esta seguro de eliminar este registro?' }, method: :delete
+          tfoot
+            tr
+              td
+                | Total
+              td
+                = number_to_currency(@order.total_paid)
+              td
+              td
+              td
+              td
 
 
       .pull-right.mt-5

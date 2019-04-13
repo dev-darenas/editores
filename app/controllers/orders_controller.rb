@@ -32,6 +32,8 @@ class OrdersController < ApplicationController
     @order = WebOrder.new(order_params)
     respond_to do |format|
       if @order.save
+        @order.payments.create(total_paid: params[:initial], kind: :initial, date: @order.date) if params[:initial]
+        @order.update(total_paid: params[:initial])
         format.html { redirect_to order_path(@order.id), notice: 'Order was successfully created.' }
         format.json { render :show, status: :created, location: @order }
       else
@@ -72,6 +74,20 @@ class OrdersController < ApplicationController
   # def payments
   #   @payments = current_user.orders.find(params[:order_id]).payments
   # end
+
+  def transfer
+    @error_codes = ""
+    @success_codes = nil
+    if params[:transfer]
+      params[:transfer][:codes].tr(' ', '').split(",").each do |code|
+        order = Order.find_by(code: code)
+        @error_codes = code + ", " if order.nil?
+        order.update(collector_id: params[:transfer][:user]) if order
+      end
+
+      @success_codes = "Ordenes actualizadas"
+    end
+  end
 
   private
     # Use callbacks to share common setup or constraints between actions.

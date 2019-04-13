@@ -6,6 +6,9 @@ Rails.application.routes.draw do
   resources :payments, only: [:create, :update, :destroy]
   resources :orders do
     resources :payments
+    collection do
+      get :transfer
+    end
   end
 
   resources :inventory_transfers
@@ -39,6 +42,7 @@ Rails.application.routes.draw do
       resources :dashboard, only: :index
       resources :dues, only: :index
       get 'coordinates', to: 'orders#coordinates'
+      get 'search', to: 'orders#search'
     end
   end
 end
