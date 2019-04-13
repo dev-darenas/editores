@@ -32,6 +32,8 @@ class OrdersController < ApplicationController
     @order = WebOrder.new(order_params)
     respond_to do |format|
       if @order.save
+        @order.payments.create(total_paid: params[:initial], kind: :initial, date: @order.date) if params[:initial]
+        @order.update(total_paid: params[:initial])
         format.html { redirect_to order_path(@order.id), notice: 'Order was successfully created.' }
         format.json { render :show, status: :created, location: @order }
       else

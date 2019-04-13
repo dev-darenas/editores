@@ -11,9 +11,10 @@ class Payment < ApplicationRecord
 
   enum kind: [:regular, :initial]
 
-
-
   def row_status
+    return ""
+
+    #TODO: porque este campo status??
     case status
     when "pending"
       "table-danger"

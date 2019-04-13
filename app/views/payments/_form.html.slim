@@ -9,6 +9,12 @@
             .form-group.row
               .col-sm-4
               .col-sm-4.mb-3.mb-sm-0.text-left
+                label.form-control-label Nueva fecha
+                = text_field_tag :new_date, nil, type: 'date', class: 'form-control'
+              .col-sm-4
+            .form-group.row
+              .col-sm-4
+              .col-sm-4.mb-3.mb-sm-0.text-left
                 = f.input :date, as: :date, label: 'Fecha de Pago:'
               .col-sm-4
             .form-group.row

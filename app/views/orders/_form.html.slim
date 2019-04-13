@@ -70,6 +70,8 @@
                 = f.association :collector, label: 'Cobrador:', label_method: :full_name
 
             .form-group.row
+              label.form-control-label Cuota inicial
+              input.form-control.numeric min="0" aria-required="true" type="number" step="any" value="0.0" name="initial" id="initial"
 
             .text-right
               -#= link_to 'Add Another Asset', '', :class => 'duplicate_nested_form'

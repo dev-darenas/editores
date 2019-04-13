@@ -5,7 +5,8 @@ class PaymentsController < ApplicationController
   # GET /payments
   # GET /payments.json
   def index
-    @payments = Order.find(params[:order_id]).payments
+    @order = Order.find(params[:order_id])
+    @payments = @order.payments
   end
 
   # GET /payments/1
@@ -26,9 +27,9 @@ class PaymentsController < ApplicationController
   # POST /payments.json
   def create
     @payment = @order.payments.new(payment_params)
-
     respond_to do |format|
       if @payment.save
+        @order.update(payment_date: params[:new_date], total_paid: @order.total_paid + @payment.total_paid)
         format.html { redirect_to order_payment_path(@order, @payment), notice: 'Payment was successfully created.' }
         format.json { render :show, status: :created, location: @payment }
       else
