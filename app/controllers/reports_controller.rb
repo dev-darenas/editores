@@ -9,8 +9,8 @@ class ReportsController < ApplicationController
 
     if params[:start_date] && params[:end_date]
       payments = Payment.includes(:order).ransack({ 
-          order_enterprise_id_eq: @collector,
-          order_collector_id_eq: @company_q,
+          order_enterprise_id_eq: @company_q,
+          order_collector_id_eq: @collector_q,
           date_gteq: @start_date,
           date_lteq: @end_date,
         }).result
