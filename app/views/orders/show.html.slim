@@ -121,6 +121,22 @@
               strong A partir del:&nbsp
               = @order.payment_date
 
+      .row
+        .col-lg-4
+          .card.mb-1.border-left-primary
+            .card-body
+              strong Total:&nbsp
+              = number_to_currency(@order.total)
+        .col-lg-4
+          .card.mb-1.border-left-primary
+            .card-body
+              strong Valos pagado:&nbsp
+              = number_to_currency(@order.total_paid)
+        .col-lg-4
+          .card.mb-1.border-left-primary
+            .card-body
+              strong saldo:&nbsp
+              = number_to_currency(@order.total - @order.total_paid)
 
       .row
         .col-lg-12
@@ -160,6 +176,9 @@
 
 
       .pull-right.mt-5
+        a.btn.btn-warning.btn-icon-split.pull-left href="#{return_order_path(@order)}" onclick="return confirm('Está seguro que desea cambiar el estado a devolución?')"
+          span.text
+            | Devolucion
         a.btn.btn-primary.btn-icon-split.pull-left[href=edit_order_path(@order)]
           span.text
             | Editar

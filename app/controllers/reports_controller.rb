@@ -8,7 +8,7 @@ class ReportsController < ApplicationController
     @report = []
 
     if params[:start_date] && params[:end_date]
-      payments = Payment.includes(:order).ransack({ 
+      payments = Payment.includes(:order).ransack({
           order_enterprise_id_eq: @company_q,
           order_collector_id_eq: @collector_q,
           date_gteq: @start_date,
@@ -30,7 +30,7 @@ class ReportsController < ApplicationController
     @report = []
 
     if params[:start_date] && params[:end_date]
-      ordes = Order.ransack({ 
+      ordes = Order.pending.ransack({
           enterprise_id_eq: @company_q,
           collector_id_eq: @collector_q,
           payment_date_gteq: @start_date,
@@ -41,5 +41,9 @@ class ReportsController < ApplicationController
         @report.push(OpenStruct.new(day: date.strftime('%e'), count: current_orders.count, count_money: current_orders.sum(:total_paid)))
       end
     end
+  end
+
+  def seller
+    
   end
 end
