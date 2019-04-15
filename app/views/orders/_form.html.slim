@@ -2,6 +2,7 @@
   .col-lg-12
     .p-2
       .text-center
+        = show_status(@order)
         h1.h4.text-gray-900.mb-4
           = simple_form_for @order do |f|
             .form-group.row
@@ -86,8 +87,6 @@
                       | Mercancía
                     th
                       | Cantidad
-                    th
-                      | Total
                     th.text-center
                       | Acciones
                 tbody
@@ -96,7 +95,6 @@
                       tr
                         td = wares_form.association :ware, label: false, required: true
                         td = wares_form.input :quantity, label: false, :input_html => { min: 0 }, required: true
-                        td = wares_form.input :total, label: false, :input_html => { min: 0 }, required: true
                         td
                           - if wares_form.object.new_record?
                             a.btn.btn-danger.destroy_duplicate_nested_form[data-remote=true]
@@ -113,6 +111,10 @@
 
             .pull-right.mt-5
               = f.submit "Guardar", class: "btn btn-primary"
+              - if @order.id
+                a.btn.btn-warning.btn-icon-split.pull-left href="#{return_order_path(@order)}" onclick="return confirm('Está seguro que desea cambiar el estado a devolución?')"
+                  span.text
+                    | Devolucion
             .pull-left.mt-5
               a.btn.btn-primary.btn-icon-split.pull-left[href=orders_path]
                 span.text

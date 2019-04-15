@@ -5,6 +5,10 @@ Rails.application.routes.draw do
   resources :dues
   resources :payments, only: [:create, :update, :destroy]
   resources :orders do
+    member do
+      get :return
+    end
+
     resources :payments
     collection do
       get :transfer
@@ -14,6 +18,7 @@ Rails.application.routes.draw do
   resources :reports do
     collection do
       get :collection
+      get :collection_pending
     end
   end
 

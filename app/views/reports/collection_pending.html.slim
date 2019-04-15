@@ -1,10 +1,10 @@
 .container-fluid
   h1.h3.mb-2.text-gray-800
-    | Reporte de cobranza
+    | Reporte de cobranza - Pendiente
   .card.shadow.mb-4
     .card-header.py-3
     .card-body
-      = form_tag("/reports/collection", method: "get") do
+      = form_tag("/reports/collection_pending", method: "get") do
         .form-group.row
           .col-sm-4.mb-3.mb-sm-0.text-left
             label.form-control-label fecha incio

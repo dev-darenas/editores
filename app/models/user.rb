@@ -41,8 +41,7 @@ class User < ApplicationRecord
     super && roles.first.name == "admin"
   end
 
-
   def self.collector
-    User.all
+    Role.find_by(name: :collector).users
   end
 end

@@ -1,5 +1,5 @@
 class OrdersController < ApplicationController
-  before_action :set_order, only: [:show, :edit, :update, :destroy]
+  before_action :set_order, only: [:show, :edit, :update, :destroy, :return]
   helper_method :sort_column, :sort_direction
 
   # GET /orders
@@ -70,9 +70,10 @@ class OrdersController < ApplicationController
     end
   end
 
-  # def payments
-  #   @payments = current_user.orders.find(params[:order_id]).payments
-  # end
+  def return
+    @order.returned!
+    redirect_to edit_order_path(@order)
+  end
 
   def transfer
     @error_codes = ""

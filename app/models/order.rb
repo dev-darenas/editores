@@ -80,6 +80,7 @@ class Order < ApplicationRecord
 
   def update_total_payment
     self.update(total_paid: self.payments.sum(:total_paid))
+    self.completed! if total_paid >= total
   end
 
   def balance
