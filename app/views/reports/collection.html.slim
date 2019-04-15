@@ -1,0 +1,54 @@
+.container-fluid
+  h1.h3.mb-2.text-gray-800
+    | Reporte de cobranza
+  .card.shadow.mb-4
+    .card-header.py-3
+    .card-body
+      = form_tag("/reports/collection", method: "get") do
+        .form-group.row
+          .col-sm-4.mb-3.mb-sm-0.text-left
+            label.form-control-label fecha incio
+            = text_field_tag :start_date, @start_date, type: 'date', class: 'form-control'
+
+          .col-sm-4.mb-3.mb-sm-0.text-left
+            label.form-control-label fecha fin
+            = text_field_tag :end_date, @end_date, type: 'date', class: 'form-control'
+
+          .col-sm-4.mb-3.mb-sm-0.text-left
+            label.form-control-label  Cobrador
+            = select(:collector, nil, options_for_select(User.collector.collect {|p| [ p.full_name, p.id ] }, selected: @collector_q), { include_blank: true }, {class: 'form-control'})
+
+          .col-sm-4.mb-3.mb-sm-0.text-left
+            label.form-control-label  Empresa
+            = select(:company, nil, options_for_select(Enterprise.all.collect {|p| [ p.name, p.id ] }, selected: @company_q), { include_blank: true, selected_value: 2 }, {class: 'form-control'})
+
+        = submit_tag "Generar", class: "btn btn-primary"
+
+      hr
+      .table-responsive
+        table#dataTable.table-sm.table.table-bordered[width="100%" cellspacing="0"]
+          thead
+            tr
+              th
+                | Día
+              th
+                | Cantidad de clientes
+              th
+                | Cantidad de Dinero
+          tbody
+            - @report.each do |r|
+              tr
+                td
+                  = r.day
+                td
+                  = r.count
+                td
+                  = r.count_money
+          tfooter
+            tr
+              td
+                | Total
+              td
+                = @report.sum(&:count)
+              td
+                = @report.sum(&:count_money)

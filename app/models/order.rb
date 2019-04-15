@@ -34,6 +34,7 @@ class Order < ApplicationRecord
 
   validates :quota_quantity, presence: true, numericality: { only_integer: true, greater_than: 0 }
   validates :quota_amount, presence: true, numericality: { greater_than: 0 }
+  validates :code, uniqueness: { scope: :enterprise_id }
 
   # geocoded_by :address
 
@@ -57,6 +58,11 @@ class Order < ApplicationRecord
   # after_create :create_payments
 
   enum status: [:pending, :returned, :completed]
+  before_save :set_total
+
+  def set_total
+    self.total = quota_quantity * quota_amount
+  end
 
   def address
     [
@@ -72,18 +78,13 @@ class Order < ApplicationRecord
     :pending
   end
 
+  def update_total_payment
+    self.update(total_paid: self.payments.sum(:total_paid))
+  end
 
-  # def create_payments
-  #   quota_quantity.times do |index|
-  #     payment = self.payments.create(
-  #       total_paid: self.quota_amount,
-  #       date: index == 0 ? self.payment_date : 15.business_days.after(self.payments.order(date: :asc).pluck(:date).last),# n.days depending of selection in order
-  #       status: :pending,
-  #       latitude: self.latitude,
-  #       longitude: self.longitude
-  #     )
-  #   end
-  # end
+  def balance
+    total - total_paid
+  end
 
   def lat_changed?
     if (self.address_changed?)

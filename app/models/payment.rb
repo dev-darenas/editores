@@ -8,8 +8,13 @@ class Payment < ApplicationRecord
 
   reverse_geocoded_by :latitude, :longitude
   # after_validation :reverse_geocode
+  after_create :set_total_paymel
 
   enum kind: [:regular, :initial]
+
+  def set_total_paymel
+    self&.order&.update_total_payment
+  end
 
   def row_status
     return ""

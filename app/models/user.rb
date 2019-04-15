@@ -40,4 +40,9 @@ class User < ApplicationRecord
   def active_for_authentication?      
     super && roles.first.name == "admin"
   end
+
+
+  def self.collector
+    User.all
+  end
 end

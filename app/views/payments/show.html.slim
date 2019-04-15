@@ -13,6 +13,13 @@
         .col-lg-4
           .card.mb-1.py-1.border-left-primary
             .card-body
+              strong Codigo:&nbsp
+              = @order.code
+        .col-lg-4
+        .col-lg-4
+        .col-lg-4
+          .card.mb-1.py-1.border-left-primary
+            .card-body
               strong nueva fecha de pago:&nbsp
               = @order.payment_date.strftime("%F")
         .col-lg-4
@@ -30,6 +37,10 @@
             .card-body
               strong Observaciones:&nbsp
               = @payment.observations
+          .card.mb-1.py-1.border-left-primary
+            .card-body
+              strong Saldo:&nbsp
+              = @order.balance
         .col-lg-4
 
       .row.mt-5

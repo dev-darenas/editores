@@ -26,6 +26,14 @@
               strong Descripción:&nbsp
               = @enterprise.description
 
+      .row
+        .col-lg-12
+          .card.mb-1.py-1.border-left-warning
+            .card-body
+              strong Consecutivos sin usar:&nbsp
+              br
+              = code_unused(@enterprise)
+
       .pull-right.mt-5
         a.btn.btn-primary.btn-icon-split.pull-left[href=edit_enterprise_path(@enterprise)]
           span.text

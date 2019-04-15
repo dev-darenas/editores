@@ -44,6 +44,8 @@
                 | Total
               th
                 | Pagado
+              th
+                | Saldo
               th.text-center[colspan="3"]
                 | Acciones
           tbody
@@ -66,9 +68,11 @@
                 td
                   = order.payment_date.strftime("%F")
                 td
-                  = number_to_currency(order.orders_wares.sum(&:total))
+                  = number_to_currency(order.total)
                 td
                   = number_to_currency(order.total_paid)
+                td
+                  = number_to_currency(order.balance)
                 td.text-center
                   = link_to 'Ver', order
                 td.text-center

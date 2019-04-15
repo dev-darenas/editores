@@ -11,6 +11,12 @@ Rails.application.routes.draw do
     end
   end
 
+  resources :reports do
+    collection do
+      get :collection
+    end
+  end
+
   resources :inventory_transfers
   resources :load_wares
   resources :countries
