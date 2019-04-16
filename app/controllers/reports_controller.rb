@@ -38,7 +38,7 @@ class ReportsController < ApplicationController
         }).result
       (params[:start_date].to_date..params[:end_date].to_date).each do |date|
         current_orders = ordes.where(payment_date: date)
-        @report.push(OpenStruct.new(day: date.strftime('%e'), count: current_orders.count, count_money: current_orders.sum(:total_paid)))
+        @report.push(OpenStruct.new(day: date.strftime('%e'), count: current_orders.count, count_money: current_orders.sum(:quota_amount)))
       end
     end
   end
