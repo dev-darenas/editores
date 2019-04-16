@@ -44,6 +44,27 @@ class ReportsController < ApplicationController
   end
 
   def seller
-    
+    format_date = "%Y-%m-%d"
+    @start_date = params[:start_date].nil? ? Time.current.beginning_of_month.strftime(format_date)  : params[:start_date]
+    @end_date = params[:end_date].nil? ? Time.current.end_of_month.strftime(format_date) : params[:end_date]
+    @report = []
+
+    if params[:start_date] && params[:end_date]
+      ordes = Order.pending.ransack({
+        date_gteq: @start_date,
+        date_lteq: @end_date,
+      }).result
+
+      User.all.each do |user|
+        current_order = ordes.where(user_id: user.id)
+        @report.push(OpenStruct.new({
+                full_name: user.full_name,
+                count_seller: current_order.count,
+                initial: Payment.where(order_id: current_order.pluck(:id)).sum(:total_paid),
+                count_last: ordes.where(user_id: user.id, date: @end_date).count,
+                initial_last: Payment.where(order_id: current_order.pluck(:id), order_id: current_order.where(date: @end_date).pluck(:id)).sum(:total_paid)
+              }))
+      end
+    end
   end
 end

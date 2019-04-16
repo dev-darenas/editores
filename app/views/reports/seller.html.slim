@@ -1,0 +1,58 @@
+.container-fluid
+  h1.h3.mb-2.text-gray-800
+    | Reporte de ventas
+  .card.shadow.mb-4
+    .card-header.py-3
+    .card-body
+      = form_tag("/reports/seller", method: "get") do
+        .form-group.row
+          .col-sm-4.mb-3.mb-sm-0.text-left
+            label.form-control-label fecha incio
+            = text_field_tag :start_date, @start_date, type: 'date', class: 'form-control'
+
+          .col-sm-4.mb-3.mb-sm-0.text-left
+            label.form-control-label fecha fin
+            = text_field_tag :end_date, @end_date, type: 'date', class: 'form-control'
+
+        = submit_tag "Generar", class: "btn btn-primary"
+
+      hr
+      .table-responsive
+        table#dataTable.table-sm.table.table-bordered[width="100%" cellspacing="0"]
+          thead
+            tr
+              th
+                | Vendedor
+              th
+                | Cantidad de ventas
+              th
+                | Cantidad de cuotas iniciales
+              th
+                | Ventas último día
+              th
+                | Cuotas iniciales último día
+          tbody
+            - @report.each do |r|
+              tr
+                td
+                  = r.full_name
+                td
+                  = r.count_seller
+                td
+                  = r.initial
+                td
+                  = r.count_last
+                td
+                  = r.initial_last
+          tfooter
+            tr
+              td
+                | Total
+              td
+                = @report.sum(&:count_seller)
+              td
+                = @report.sum(&:initial)
+              td
+                = @report.sum(&:count_last)
+              td
+                = @report.sum(&:initial_last)

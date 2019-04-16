@@ -44,4 +44,8 @@ class User < ApplicationRecord
   def self.collector
     Role.find_by(name: :collector).users
   end
+
+  def self.seller
+    Role.find_by(name: :seller).users
+  end
 end
