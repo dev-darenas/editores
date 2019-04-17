@@ -6,7 +6,7 @@ class OrdersController < ApplicationController
   # GET /orders.json
   def index
     @q = Order.ransack(params[:q])
-    @orders = @q.result.includes(:collector, :user).page(params[:page])
+    @orders = @q.result.includes(:collector, :user).paginate(page: params[:page], per_page: params[:per_page] || 10)
 
     respond_to do |format|
       format.html
