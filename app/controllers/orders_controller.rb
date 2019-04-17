@@ -7,6 +7,15 @@ class OrdersController < ApplicationController
   def index
     @q = Order.ransack(params[:q])
     @orders = @q.result.includes(:collector, :user).page(params[:page])
+
+    respond_to do |format|
+      format.html
+      format.xlsx {
+        response.headers[
+          'Content-Disposition'
+        ] = "attachment; filename=pedidos.xlsx"
+      }
+    end
   end
 
   # GET /orders/1

@@ -35,6 +35,8 @@
                 | Cantidad de clientes
               th
                 | Cantidad de Dinero
+              th
+                | Cod
           tbody
             - @report.each do |r|
               tr
@@ -44,6 +46,8 @@
                   = r.count
                 td
                   = r.count_money
+                td
+                  = r.codes.join(', ')
           tfooter
             tr
               td
@@ -52,3 +56,4 @@
                 = @report.sum(&:count)
               td
                 = @report.sum(&:count_money)
+              td

@@ -1,0 +1,51 @@
+wb = xlsx_package.workbook
+
+wb.add_worksheet(name: "Pedidos") do |sheet|
+  # Create the header row
+  sheet.add_row ["Código", 
+      "Cliente",
+      "Telefono",
+      "Cónyuge",
+      "Telefono Cónyuge",
+      "Dirección",
+      "Barrio",
+      "Dirección Dos",
+      "Barrio Dos",
+      "Referencia Familiar",
+      "Telefono",
+      "Referencia Personal",
+      "Telefono",
+      "Fecha de pago",
+      "Observación",
+      "Estado",
+      "Cantidad de Cuotas",
+      "Valor Cuotas",
+      "Total pagado",
+      "Total",
+      "Saldo"
+    ]
+  # Create entries for each item
+  @orders.each do |order|
+    sheet.add_row [order.code, 
+        order.client_name,
+        order.client_phone,
+        order.spouse_name,
+        order.spouse_phone,
+        order.address_one,
+        order.neighborhood_address_one,
+        order.address_two,
+        order.neighborhood_address_two,
+        order.familiar_reference,
+        order.familiar_reference_phone,
+        order.personal_reference,
+        order.personal_reference_phone,
+        order.payment_date,
+        order.observations,
+        order.status_es,
+        order.quota_quantity,
+        order.quota_amount,
+        order.total_paid,
+        order.balance
+      ]
+  end
+end

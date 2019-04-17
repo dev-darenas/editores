@@ -14,6 +14,8 @@
             | &nbsp;&nbsp;
             = link_to "Limpiar filtro", orders_path, class: 'btn btn-primary'
         .pull-right
+          = link_to "Excel", orders_path(format: :xlsx), class: 'btn btn-success'
+
           a.btn.btn-primary.btn-icon-split[href=new_order_path]
             span.icon.text-white-50
               i.fa.fa-plus

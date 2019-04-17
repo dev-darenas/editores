@@ -59,9 +59,18 @@ class Order < ApplicationRecord
 
   enum status: [:pending, :returned, :completed]
   before_save :set_total
+  $ARRAY_STATUS = { 
+    pending: 'Pendiente',
+    returned: 'Devolución',
+    completed: 'Completado'
+  }
 
   def set_total
     self.total = quota_quantity * quota_amount
+  end
+
+  def status_es
+    $ARRAY_STATUS[self.status.to_sym]
   end
 
   def address
