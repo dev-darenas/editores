@@ -8,13 +8,13 @@
           = search_form_for @q, html: { class: 'simple_form' } do |f|
             .form-group
               = f.label 'Buscar'
-              = f.search_field :client_name_or_code_or_collector_firstname_or_user_firstname_cont, class: 'form-control'
+              = f.search_field :payment_date_or_client_name_or_code_or_collector_firstname_or_user_firstname_cont, class: 'form-control'
 
             = f.submit 'Buscar', class: 'btn btn-primary'
             | &nbsp;&nbsp;
             = link_to "Limpiar filtro", orders_path, class: 'btn btn-primary'
         .pull-right
-          = link_to "Excel", orders_path(format: :xlsx, per_page: Order.count), class: 'btn btn-success'
+          = link_to "Excel", orders_path(request.parameters.merge({format: :xlsx, per_page: Order.count})), class: 'btn btn-success'
 
           a.btn.btn-primary.btn-icon-split[href=new_order_path]
             span.icon.text-white-50

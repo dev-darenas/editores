@@ -41,10 +41,16 @@ class UsersController < ApplicationController
   # PATCH/PUT /users/1
   # PATCH/PUT /users/1.json
   def update
+    new_pass = user_params[:password]
     respond_to do |format|
-      if @user.update(user_params)
+      if @user.update(user_params.except(:password, :password_confirmation))
         @user.remove_role @user.roles.first.name
         @user.add_role params[:user][:roles]
+
+        if new_pass
+          @user.update(password: new_pass, password_confirmation: new_pass)
+        end
+
         format.html { redirect_to @user, notice: 'User was successfully updated.' }
         format.json { render :show, status: :ok, location: @user }
       else
