@@ -23,4 +23,8 @@ class Message
   def self.far_from_client
     'Por Favor dirijase a la dirección del cliente para realizar el respectivo cobro'
   end
+
+  def self.order_already_taken
+    'El código del pedido ya ha sido usado, por favor utilice un código diferente'
+  end
 end

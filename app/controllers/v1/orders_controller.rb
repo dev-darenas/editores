@@ -23,6 +23,9 @@ module V1
     # POST /orders
     def create
       # order = current_user.api_orders.new(order_params)
+      exists = Order.find_by(code: params[:order][:code], enterprise_id: params[:order][:enterprise_id])
+      raise(ExceptionHandler::OrderAlreadyTaken, Message.order_already_taken) if exists.present?
+
       order = ApiOrder.new(order_params)
       order.save!
       if params[:has_initial_payment]
@@ -58,7 +61,7 @@ module V1
     def search
       orders = []
       if params[:query].present?
-        orders = Order.where("code LIKE ?", "%#{params[:query]}%")
+        orders = Order.where(code: params[:query])
       end
       json_response(orders)
     end
