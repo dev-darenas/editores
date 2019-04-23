@@ -6,10 +6,10 @@ module V1
     def index
       if current_user.has_role? :collector
         # orders = ApiOrder.where(collector_id: current_user.id, payment_date: Date.today)
-        orders = ApiOrder.where("collector_id = ? AND payment_date <= ?", current_user.id, Date.today)
+        orders = ApiOrder.near([params[:latitude], params[:longitude]]).where("collector_id = ? AND payment_date <= ?", current_user.id, Date.today)
       else
         # orders = current_user.api_orders.near([params[:latitude], params[:longitude]]).where(payment_date: Date.today)
-        orders = current_user.api_orders.where("payment_date <= ?", Date.today)
+        orders = current_user.api_orders.near([params[:latitude], params[:longitude]]).where("payment_date <= ?", Date.today)
       end
       # orders = current_user.orders.where(payment_date: Date.today)
       json_response(orders)
