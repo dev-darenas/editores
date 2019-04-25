@@ -12,7 +12,9 @@ module V1
 
       json_response({
         pending: pending,
-        collected: collected
+        collected: collected,
+        sales: current_user.orders.where(created_at: Date.today.beginning_of_day..Date.today.end_of_day).count,
+        sales_amount: current_user.orders.where(created_at: Date.today.beginning_of_day..Date.today.end_of_day).sum(&:total)
       })
     end
   end

@@ -10,6 +10,8 @@ module ExceptionHandler
 
   class FarFromClient < StandardError; end
 
+  class OrderAlreadyTaken < StandardError; end
+
   # class TransferenceSameAccount < StandardError; end
   # class InsufficientBalance < StandardError; end
   # class InsufficientAmount < StandardError; end
@@ -34,6 +36,8 @@ module ExceptionHandler
 
     rescue_from ExceptionHandler::FarFromClient, with: :far_from_client
 
+    rescue_from ExceptionHandler::OrderAlreadyTaken, with: :order_already_taken
+
     rescue_from ActiveRecord::RecordNotFound do |e|
       json_response({ message: e.message }, :not_found)
     end
@@ -57,6 +61,10 @@ module ExceptionHandler
   end
 
   def far_from_client(e)
+    json_response({ message: e.message}, :unprocessable_entity)
+  end
+
+  def order_already_taken(e)
     json_response({ message: e.message}, :unprocessable_entity)
   end
 
