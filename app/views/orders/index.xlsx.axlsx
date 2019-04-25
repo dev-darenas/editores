@@ -59,6 +59,7 @@ wb.add_worksheet(name: "Pedidos") do |sheet|
         order.quota_quantity,
         order.quota_amount,
         order.total_paid,
+        order.total,
         order.balance,
         order&.user&.full_name,
         order&.collector&.full_name,
