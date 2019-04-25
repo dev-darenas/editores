@@ -2,7 +2,12 @@ wb = xlsx_package.workbook
 
 wb.add_worksheet(name: "Pedidos") do |sheet|
   # Create the header row
-  sheet.add_row ["Código", 
+  sheet.add_row [
+      "Empresa",
+      "País",
+      "Departamento",
+      "Ciudad",
+      "Código", 
       "Cliente",
       "Telefono",
       "Cónyuge",
@@ -16,17 +21,25 @@ wb.add_worksheet(name: "Pedidos") do |sheet|
       "Referencia Personal",
       "Telefono",
       "Fecha de pago",
+      "Fecha de Compra",
       "Observación",
       "Estado",
       "Cantidad de Cuotas",
       "Valor Cuotas",
       "Total pagado",
       "Total",
-      "Saldo"
+      "Saldo",
+      "Vendedor",
+      "Cobrador"
     ]
   # Create entries for each item
   @orders.each do |order|
-    sheet.add_row [order.code, 
+    sheet.add_row [
+        order&.enterprise&.name,
+        order&.country&.name,
+        order&.department&.name,
+        order&.city&.name,
+        order.code, 
         order.client_name,
         order.client_phone,
         order.spouse_name,
@@ -40,12 +53,15 @@ wb.add_worksheet(name: "Pedidos") do |sheet|
         order.personal_reference,
         order.personal_reference_phone,
         order.payment_date,
+        order.created_at.strftime('%m/%d/%y'),
         order.observations,
         order.status_es,
         order.quota_quantity,
         order.quota_amount,
         order.total_paid,
-        order.balance
+        order.balance,
+        order&.user&.full_name,
+        order&.collector&.full_name,
       ]
   end
 end
