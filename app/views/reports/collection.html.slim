@@ -19,10 +19,27 @@
             = select(:collector, nil, options_for_select(User.collector.collect {|p| [ p.full_name, p.id ] }, selected: @collector_q), { include_blank: true }, {class: 'form-control'})
 
           .col-sm-4.mb-3.mb-sm-0.text-left
+            label.form-control-label  Vendedor
+            = select(:seller, nil, options_for_select(User.all.collect {|p| [ p.full_name, p.id ] }, selected: @seller_q), { include_blank: true }, {class: 'form-control'})
+
+          .col-sm-4.mb-3.mb-sm-0.text-left
             label.form-control-label  Empresa
             = select(:company, nil, options_for_select(Enterprise.all.collect {|p| [ p.name, p.id ] }, selected: @company_q), { include_blank: true, selected_value: 2 }, {class: 'form-control'})
 
+          .col-sm-4.mb-3.mb-sm-0.text-left
+            label.form-control-label  Pais
+            = select(:country, nil, options_for_select(Country.all.collect {|p| [ p.name, p.id ] }, selected: @country_q), { include_blank: true, selected_value: 2 }, {class: 'form-control'})
+
+          .col-sm-4.mb-3.mb-sm-0.text-left
+            label.form-control-label  Departamento
+            = select(:department, nil, options_for_select(Department.all.collect {|p| [ p.name, p.id ] }, selected: @department_q), { include_blank: true, selected_value: 2 }, {class: 'form-control'})
+
+          .col-sm-4.mb-3.mb-sm-0.text-left
+            label.form-control-label  Ciudad
+            = select(:city, nil, options_for_select(City.all.collect {|p| [ p.name, p.id ] }, selected: @city_q), { include_blank: true, selected_value: 2 }, {class: 'form-control'})
+
         = submit_tag "Generar", class: "btn btn-primary"
+        = link_to "Excel", collection_reports_path(request.parameters.merge({format: :xlsx})), class: 'btn btn-success'
 
       hr
       .table-responsive
