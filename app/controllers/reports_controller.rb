@@ -65,9 +65,9 @@ class ReportsController < ApplicationController
           collector_id_eq: @collector_q,
           payment_date_gteq: @start_date,
           payment_date_lteq: @end_date,
-          order_country_id_eq: @country_q,
-          order_department_id_eq: @department_q,
-          order_city_id_eq: @city_q
+          country_id_eq: @country_q,
+          department_id_eq: @department_q,
+          city_id_eq: @city_q
         }).result
       (params[:start_date].to_date..params[:end_date].to_date).each do |date|
         current_orders = ordes.where(payment_date: date)
@@ -107,10 +107,10 @@ class ReportsController < ApplicationController
       ordes = Order.pending.ransack({
         date_gteq: @start_date,
         date_lteq: @end_date,
-        order_user_id_eq: @seller_q,
-        order_country_id_eq: @country_q,
-        order_department_id_eq: @department_q,
-        order_city_id_eq: @city_q
+        user_id_eq: @seller_q,
+        country_id_eq: @country_q,
+        department_id_eq: @department_q,
+        city_id_eq: @city_q
       }).result
 
       User.all.each do |user|

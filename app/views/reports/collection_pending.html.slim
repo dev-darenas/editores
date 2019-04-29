@@ -39,6 +39,7 @@
             = select(:city, nil, options_for_select(City.all.collect {|p| [ p.name, p.id ] }, selected: @city_q), { include_blank: true, selected_value: 2 }, {class: 'form-control'})
 
         = submit_tag "Generar", class: "btn btn-primary"
+        = link_to "Excel", collection_pending_reports_path(request.parameters.merge({format: :xlsx})), class: 'btn btn-success'
 
       hr
       .table-responsive
