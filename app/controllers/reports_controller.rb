@@ -60,7 +60,7 @@ class ReportsController < ApplicationController
 
     if params[:start_date] && params[:end_date]
       ordes = Order.pending.ransack({
-          order_user_id_eq: @seller_q,
+          user_id_eq: @seller_q,
           enterprise_id_eq: @company_q,
           collector_id_eq: @collector_q,
           payment_date_gteq: @start_date,
