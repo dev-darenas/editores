@@ -1,0 +1,20 @@
+wb = xlsx_package.workbook
+
+wb.add_worksheet(name: "Pendiente Cobrar") do |sheet|
+  # Create the header row
+  sheet.add_row [
+      "Dia",
+      "Cantidad de clientes",
+      "Cantidad Dinero",
+      "Codigos"
+    ]
+  # Create entries for each item
+  @report.each do |r|
+    sheet.add_row [
+      r.day,
+      r.count,
+      r.count_money,
+      r.codes.join(', ')
+    ]
+  end
+end
