@@ -7,7 +7,8 @@ wb.add_worksheet(name: "Pendiente Cobrar") do |sheet|
       "Cantidad de ventas",
       "Cantidad de cuotas iniciales",
       "Ventas último día",
-      "Cuotas iniciales último día"
+      "Cuotas iniciales último día",
+      "Codigos"
     ]
   # Create entries for each item
   @report.each do |r|
@@ -16,7 +17,8 @@ wb.add_worksheet(name: "Pendiente Cobrar") do |sheet|
       r.count_seller,
       r.initial,
       r.count_last,
-      r.codes.join(', ')
+      r.initial_last,
+      r.codes
     ]
   end
 end
