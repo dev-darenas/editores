@@ -121,7 +121,7 @@ class ReportsController < ApplicationController
             initial: Payment.where(order_id: current_order.pluck(:id)).sum(:total_paid),
             count_last: ordes.where(user_id: user.id, date: @end_date).count,
             initial_last: Payment.where(order_id: current_order.pluck(:id), order_id: current_order.where(date: @end_date).pluck(:id)).sum(:total_paid),
-            codes: ordes.pluck(:code)
+            codes: current_order.pluck(:code)
           }))
       end
     end
