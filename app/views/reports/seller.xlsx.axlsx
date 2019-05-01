@@ -18,7 +18,7 @@ wb.add_worksheet(name: "Pendiente Cobrar") do |sheet|
       r.initial,
       r.count_last,
       r.initial_last,
-      r.codes
+      r.codes.join(', ')
     ]
   end
 end
