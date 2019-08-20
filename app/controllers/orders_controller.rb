@@ -98,6 +98,20 @@ class OrdersController < ApplicationController
     end
   end
 
+  def update_status
+    @error_codes = ""
+    @success_codes = nil
+    if params[:transfer]
+      params[:transfer][:codes].tr(' ', '').split(",").each do |code|
+        order = Order.find_by(code: code)
+        order.update!(status: params[:transfer][:status])
+        @error_codes = code + ", " if order.nil?
+      end
+
+      @success_codes = "Ordenes actualizadas"
+    end
+  end
+
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_order

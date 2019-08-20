@@ -57,12 +57,13 @@ class Order < ApplicationRecord
   # validates :latitude, :presence => {message: "Not a valid location on Google Maps, please check name address & country fields" }
   # after_create :create_payments
 
-  enum status: [:pending, :returned, :completed]
+  enum status: [:pending, :returned, :completed, :lost]
   before_save :set_total
   $ARRAY_STATUS = { 
     pending: 'Pendiente',
     returned: 'Devolución',
-    completed: 'Completado'
+    completed: 'Completado',
+    lost: 'Perdido'
   }
 
   def set_total
@@ -71,6 +72,10 @@ class Order < ApplicationRecord
 
   def status_es
     $ARRAY_STATUS[self.status.to_sym]
+  end
+
+  def self.status_es(status)
+    $ARRAY_STATUS[status.to_sym]
   end
 
   def address
@@ -88,7 +93,7 @@ class Order < ApplicationRecord
   end
 
   def update_total_payment
-    self.update(total_paid: self.payments.sum(:total_paid))
+    self.update!(total_paid: self.payments.sum(:total_paid))
     self.completed! if total_paid >= total
   end
 

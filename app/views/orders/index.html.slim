@@ -48,6 +48,8 @@
                 | Pagado
               th
                 | Saldo
+              th
+                | Estado
               th.text-center[colspan="3"]
                 | Acciones
           tbody
@@ -75,6 +77,8 @@
                   = number_to_currency(order.total_paid)
                 td
                   = number_to_currency(order.balance)
+                td
+                  = order.status_es
                 td.text-center
                   = link_to 'Ver', order
                 td.text-center

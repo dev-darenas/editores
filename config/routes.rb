@@ -12,6 +12,7 @@ Rails.application.routes.draw do
     resources :payments
     collection do
       get :transfer
+      get :update_status
     end
   end
 
