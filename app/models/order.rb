@@ -34,7 +34,7 @@ class Order < ApplicationRecord
 
   validates :quota_quantity, presence: true, numericality: { only_integer: true, greater_than: 0 }
   validates :quota_amount, presence: true, numericality: { greater_than: 0 }
-  validates :code, uniqueness: { scope: :enterprise_id }
+  validates :code, uniqueness: { scope: :enterprise_id }, on: :create
 
   # geocoded_by :address
 
