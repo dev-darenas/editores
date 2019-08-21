@@ -118,7 +118,7 @@ class OrdersController < ApplicationController
     if params[:order]
       params[:order][:codes].tr(' ', '').split(",").each do |code|
         order = Order.find_by(code: code)
-        order.update!(order_params)
+        order.update!(order_params) if order
         @error_codes = code + ", " if order.nil?
       end
 
