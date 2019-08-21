@@ -13,6 +13,7 @@ Rails.application.routes.draw do
     collection do
       get :transfer
       get :update_status
+      get :update_date_payment
     end
   end
 

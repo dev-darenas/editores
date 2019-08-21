@@ -1,0 +1,26 @@
+.container-fluid
+  h1.h3.mb-2.text-gray-800
+    | Cambiar Estado
+  .card.shadow.mb-4
+    .card-header.py-3
+      h6.m-0.font-weight-bold.text-primary
+    .card-body
+      - if @success_codes
+        .alert.alert-success role="alert"
+          = @success_codes
+
+      = simple_form_for Order.new, url: '/orders/update_date_payment', method: 'get' do |f|
+        .form-group.select
+            label.form-control-label Fecha
+            = f.input :payment_date, as: :date, label: 'A partir del:' 
+        .form-group
+          label.form-control-label Codigos
+          = text_field(:order, :codes, class: 'form-control string')
+        = submit_tag "Transferir", class: "btn btn-primary"
+
+      - if @error_codes != ""
+        .alert.alert-warning role="alert"
+          h5 Codigo con problemas
+          = @error_codes
+
+
