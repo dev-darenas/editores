@@ -70,7 +70,7 @@
                 td
                   = order&.collector&.full_name
                 td
-                  = order.payment_date.strftime("%F")
+                  = order&.payment_date&.strftime("%F")
                 td
                   = number_to_currency(order.total)
                 td
