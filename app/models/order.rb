@@ -71,7 +71,7 @@ class Order < ApplicationRecord
   end
 
   def status_es
-    $ARRAY_STATUS[self.status.to_sym]
+    $ARRAY_STATUS[self.status.to_sym] if self.status
   end
 
   def self.status_es(status)
