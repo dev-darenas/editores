@@ -57,7 +57,7 @@ gem "slim-rails"
 gem "geocoder", "1.5.1"
 
 #Nested Forms
-gem 'simple_form', '4.1.0'
+gem 'simple_form', '5.0.0'
 
 
 gem 'business_time', '0.9.3'
