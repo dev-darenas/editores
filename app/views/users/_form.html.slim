@@ -18,14 +18,19 @@
                 = f.text_field :firstname, autofocus: true, class: "form-control form-control-user", id: "exampleInputFirstName", placeholder: "Nombres"
               .col-sm-6
                 = f.text_field :lastname, autofocus: false, class: "form-control form-control-user", id: "exampleInputLastName", placeholder: "Apellidos"
+
             .form-group.row
               .col-sm-6.mb-3.mb-sm-0
                 = f.phone_field :cellphone, autofocus: false, class: "form-control form-control-user", id: "exampleInputCellPhone", placeholder: "Numero Celular"
               .col-sm-6
                 = f.select :roles, options_for_select( Role.all.order(:name).map{ |c| [c.role_name, c.name.to_sym] }, @user.try(:roles).try(:first).try(:name).try(:to_sym) ), {}, { class: 'form-control' }
 
-            .form-group
-              = f.email_field :email, autofocus: false, autocomplete: "email", class: "form-control form-control-user", id: "exampleInputEmail", placeholder: "Correo Electrónico"
+            .form-group.row
+              .col-sm-6.mb-3.mb-sm-0
+                = f.label 'Activo?'
+                = f.check_box :active
+              .col-sm-6
+                = f.email_field :email, autofocus: false, autocomplete: "email", class: "form-control form-control-user", id: "exampleInputEmail", placeholder: "Correo Electrónico"
 
             .form-group.row
               .col-sm-6.mb-3.mb-sm-0

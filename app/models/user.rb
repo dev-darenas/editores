@@ -11,7 +11,6 @@ class User < ApplicationRecord
             :cellphone,
             presence: true
 
-
   has_many  :sent,
             :class_name => "Ware",
             :foreign_key  => "sent_id"
@@ -33,12 +32,14 @@ class User < ApplicationRecord
 
   has_many :payments, through: :orders
 
+  scope :active, -> { where(active: true) }
+
   def full_name
     "#{firstname} #{lastname}"
   end
 
   def active_for_authentication?      
-    super && roles.first.name == "admin"
+    super && roles.first.name == "admin" && self.active
   end
 
   def self.collector

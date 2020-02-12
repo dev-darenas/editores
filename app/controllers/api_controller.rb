@@ -38,8 +38,8 @@ class ApiController < ActionController::API
       products:     ActiveModelSerializers::SerializableResource.new(Ware.all, each_serializer: WareSerializer).as_json,
       dues:         ActiveModelSerializers::SerializableResource.new(Due.all, each_serializer: DueSerializer).as_json,
       enterprises:  ActiveModelSerializers::SerializableResource.new(Enterprise.all, each_serializer: EnterpriseSerializer).as_json,
-      assesors:     ActiveModelSerializers::SerializableResource.new(User.all, each_serializer: UserSerializer).as_json,
-      collectors:   ActiveModelSerializers::SerializableResource.new(User.with_role(:collector), each_serializer: UserSerializer).as_json
+      assesors:     ActiveModelSerializers::SerializableResource.new(User.active, each_serializer: UserSerializer).as_json,
+      collectors:   ActiveModelSerializers::SerializableResource.new(User.active.with_role(:collector), each_serializer: UserSerializer).as_json
     }
   end
 end
