@@ -35,7 +35,7 @@ gem 'jbuilder', '~> 2.5'
 gem 'font-awesome-rails', '~> 4.3'
 
 # Devise
-gem 'devise', '4.6.1'
+gem 'devise', '4.7.1'
 gem 'cancancan', '2.3.0'
 gem 'rolify', '5.2.0'
 
