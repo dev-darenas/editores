@@ -54,7 +54,7 @@ gem 'will_paginate', '~> 3.1.0'
 gem "slim-rails"
 
 #Geocoder
-gem "geocoder", "1.5.1"
+gem "geocoder", "1.6.1"
 
 #Nested Forms
 gem 'simple_form', '4.1.0'
